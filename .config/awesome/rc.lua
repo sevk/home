@@ -205,11 +205,18 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod4" }, "d", function () awful.util.spawn("stardict") end),
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("stardict") end),
 
+    awful.key({ "Mod4" }, "r", function () awful.util.spawn("remmina") end),
+    awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("remmina") end),
+
+    awful.key({ "Mod4" }, "e", function () awful.util.spawn("pcmanfm") end),
+    awful.key({ modkey, "Control" }, "e", function () awful.util.spawn("pcmanfm") end),
+
     -- 107 is Print
     awful.key({ "Shift" }, "Print" , 
         function () 
-          awful.util.spawn("scrot -e 'mv $f /tmp' & ") 
-          --os.execute("sleep 0.5")
+          awful.util.spawn("scrot -sb -e 'mv $f /tmp/ ' ") 
+          --os.execute("scrot -sb -e 'mv $f /tmp/ ' ")
+          os.execute("scrot sleep 0.5")
           naughty.notify({ title="Screenshot", text="The full screen captured" })
         end),
 
@@ -262,8 +269,8 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    awful.key({ modkey, "Shift"  }, "r", awesome.restart),
+    awful.key({ modkey, "Shift"  }, "q", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
