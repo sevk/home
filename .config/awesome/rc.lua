@@ -19,6 +19,7 @@ if awesome.startup_errors then
                      text = awesome.startup_errors })
 end
 
+
 -- Handle runtime errors after startup
 do
     local in_error = false
@@ -43,6 +44,9 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
+
+os.execute("gnome-settings-daemon&")
+os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -214,9 +218,9 @@ globalkeys = awful.util.table.join(
     -- 107 is Print
     awful.key({ "Shift" }, "Print" , 
         function () 
-          awful.util.spawn("scrot -sb -e 'mv $f /tmp/ ' ") 
-          --os.execute("scrot -sb -e 'mv $f /tmp/ ' ")
-          os.execute("scrot sleep 0.5")
+          --awful.util.spawn("scrot -sb -e 'mv $f /tmp/ ' ") 
+          os.execute("scrot -sb -e 'mv $f /tmp/ ' ")
+          os.execute("sleep 0.5")
           naughty.notify({ title="Screenshot", text="The full screen captured" })
         end),
 
@@ -399,12 +403,12 @@ client.add_signal("manage", function (c, startup)
     -- awful.titlebar.add(c, { modkey = modkey })
 
     -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-            and awful.client.focus.filter(c) then
-            client.focus = c
-        end
-    end)
+    --c:add_signal("mouse::enter", function(c)
+        --if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+            --and awful.client.focus.filter(c) then
+            --client.focus = c
+        --end
+    --end)
 
     if not startup then
         -- Set the windows at the slave,
