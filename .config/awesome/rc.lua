@@ -224,8 +224,8 @@ globalkeys = awful.util.table.join(
           naughty.notify({ title="Screenshot", text="The full screen captured" })
         end),
 
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    --awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
