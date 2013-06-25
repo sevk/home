@@ -209,7 +209,6 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod4" }, "d", function () awful.util.spawn("stardict") end),
     awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("stardict") end),
 
-    awful.key({ "Mod4" }, "r", function () awful.util.spawn("remmina") end),
     awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("remmina") end),
 
     awful.key({ "Mod4" }, "e", function () awful.util.spawn("pcmanfm") end),
