@@ -200,10 +200,12 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+www="chromium-browser"
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ "Mod4" }, "w", function () awful.util.spawn("firefox") end),
-    awful.key({ modkey , "Control"}, "w", function () awful.util.spawn("firefox") end),
+    awful.key({ "Mod4" }, "t",   function () awful.util.spawn(terminal) end),
+    awful.key({ "Mod4" }, "w", function () awful.util.spawn(www) end),
+    awful.key({ modkey , "Control"}, "w", function () awful.util.spawn(www) end),
     awful.key({ "Mod4" }, "v", function () awful.util.spawn("virtualbox") end),
     awful.key({ modkey, "Control" }, "v", function () awful.util.spawn("virtualbox") end),
     awful.key({ "Mod4" }, "d", function () awful.util.spawn("stardict") end),
