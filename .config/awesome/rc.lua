@@ -41,12 +41,14 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+--terminal = "x-terminal-emulator"
+--terminal = "xfce4-terminal"
+terminal = "uxterm"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
-os.execute("gnome-settings-daemon&")
-os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
+--os.execute("gnome-settings-daemon&")
+--os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
