@@ -41,12 +41,19 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
---terminal = "x-terminal-emulator"
---terminal = "xfce4-terminal"
-terminal = "uxterm"
+--terminal = "uxterm"
+a= os.execute("type xfce4-terminal")
+if a then 
+	terminal = "xfce4-terminal" 
+elseif a=os.getenv("COLORTERM")
+	terminal = a
+end
+terminal = "x-terminal-emulator"
+
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
+os.euecute("xset r rate 200 20 &")
 --os.execute("gnome-settings-daemon&")
 --os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
 
