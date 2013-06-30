@@ -11,6 +11,7 @@ match whitespaceEOL /\s\+\(\%#\)\@!$/
 syntax match whitespaceEOL /\s\+$/
 syntax match ColorColumn /\%>87v.\+/
 set list "显示空格和行尾"
+"set cpt=t "补全方式
 if has("win32")
    set rtp+=G:\dev\vundle
 	set termencoding=cp936
@@ -139,8 +140,8 @@ set nocp
      " non github repos
      "Bundle 'git://git.wincent.com/command-t.git'
      
-     "Bundle 'vim-ruby'
-     "Bundle 'git://github.com/vim-ruby/vim-ruby.git'
+     Bundle 'Shougo/neocomplcache.vim'
+     Bundle 'vim-ruby/vim-ruby'
      "Bundle 'https://github.com/vim-ruby/vim-ruby.git'
      Bundle 'nathanaelkane/vim-indent-guides'
      Bundle 'git://github.com/rking/ag.vim.git'
@@ -316,3 +317,53 @@ let Tlist_Exit_OnlyWindow=1 "当taglist是最后一个分割窗口时，自动�
 let Tlist_Process_File_Always=0 "是否一直处理tags.1:处理;0:不处理。不是一直实时更新tags，因为没有必要
 "let Tlist_Inc_Winwidth=0
 
+set completeopt=menuone,menu,longest,preview
+let g:SuperTabRetainCompletionType = 2
+"let g:SuperTabDefaultCompletionType = <C-X><C-O> 
+let g:AutoComplPop_MappingDriven = 0
+let g:acp_enableAtStartup = 1
+let g:acp_ignorecaseOption = 1
+let g:acp_completeOption = '.,w,b,k'
+" """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup =1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 1
+" set the max list in the popup menu. increase the speed
+let g:neocomplcache_max_list=20
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplcache_auto_completion_start_length=1
+" ignore letter case
+let g:neocomplcache_enable_ignore_case=1
+" """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePair(')')<CR>
+:inoremap { {}<ESC>i
+:inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePair(']')<CR>
+:inoremap < <><ESC>i
+:inoremap > <c-r>=ClosePair('>')<CR>
+function ClosePair(char)
+if getline('.')[col('.') - 1] == a:char
+  return "\<Right>"
+else
+  return a:char
+endif
+endf
+" """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
+set nu
+set cindent
