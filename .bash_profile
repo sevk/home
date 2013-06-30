@@ -24,7 +24,9 @@ alias s3='scr.rb 3'
 alias nau='nautilus-real --no-desktop $@'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
-xset r rate 210 20 &
+
+if [ -z `which xset` ]; then xsetr rate 210 20 &
+fi
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
