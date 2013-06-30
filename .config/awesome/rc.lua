@@ -45,15 +45,15 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 a= os.execute("type xfce4-terminal")
 if a then 
 	terminal = "xfce4-terminal" 
-elseif a=os.getenv("COLORTERM")
-	terminal = a
+elseif os.getenv("COLORTERM") then
+	terminal = os.getenv("COLORTERM")
 end
 terminal = "x-terminal-emulator"
 
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
-os.euecute("xset r rate 200 20 &")
+os.execute("xset r rate 200 20 &")
 --os.execute("gnome-settings-daemon&")
 --os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
 
