@@ -21,6 +21,7 @@ alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
 alias s3='scr.rb 3'
+alias nau='nautilus-real --no-desktop $@'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 xset r rate 210 20 &

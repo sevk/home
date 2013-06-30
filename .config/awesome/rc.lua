@@ -54,8 +54,18 @@ editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 os.execute("xset r rate 210 20 &")
---os.execute("gnome-settings-daemon&")
 --os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
+function start_daemon(dae)
+  daeCheck = os.execute("ps -eF | grep -v grep | grep -w " .. dae)
+  if (daeCheck ~= 0) then
+    os.execute(dae .. " &")
+  end
+end
+
+procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
+for k = 1, #procs do
+  --start_daemon(procs[k])
+end
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
