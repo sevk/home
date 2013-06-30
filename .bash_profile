@@ -23,4 +23,12 @@ alias s2='scr.rb 2'
 alias s3='scr.rb 3'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
+xset r rate 210 20 &
+
+if [[ -s "$HOME/.rbenv/bin" ]] ; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+export RUBY_CFLAGS="-march=native -O3"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
