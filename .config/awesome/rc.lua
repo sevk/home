@@ -53,7 +53,7 @@ terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
-os.execute("xset r rate 200 20 &")
+os.execute("xset r rate 210 20 &")
 --os.execute("gnome-settings-daemon&")
 --os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
 
