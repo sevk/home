@@ -1,15 +1,6 @@
 #export RUBY_CFLAGS="-march=native -O3"
 
 echo " exe bash_profile"
-if [ -z "$BASHRC_" ] 
-then
-  sleep 0
-  export BASHRC_=" bashrc ed yet"
-  source ~/.bashrc
-else
-  echo $BASHRC_
-  sleep 0
-fi
 
 alias aps='aptitude search'
 alias apw='aptitude show'
@@ -21,7 +12,7 @@ alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
 alias s3='scr.rb 3'
-alias nau='nautilus-real --no-desktop $@'
+#alias nau='nautilus-real --no-desktop $@'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 
@@ -46,18 +37,26 @@ export RUBY_CFLAGS="-march=native -O3"
 local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION"
 
 if [ -n "$local256" ] || [ -n "$SEND_256_COLORS_TO_REMOTE" ]; then
-
   case "$TERM" in
     'xterm') TERM=xterm-256color;;
     'screen') TERM=screen-256color;;
     'Eterm') TERM=Eterm-256color;;
   esac
   export TERM
-
+  export force_color_prompt=yes
   if [ -n "$TERMCAP" ] && [ "$TERM" = "screen-256color" ]; then
     TERMCAP=$(echo "$TERMCAP" | sed -e 's/Co#8/Co#256/g')
     export TERMCAP
   fi
 fi
-
 unset local256
+
+if [ -z "$BASHRC_" ] 
+then
+  sleep 0
+  export BASHRC_=" bashrc ed yet"
+  source ~/.bashrc
+else
+  echo $BASHRC_
+  sleep 0
+fi
