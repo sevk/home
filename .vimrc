@@ -111,9 +111,9 @@ map [[ ?{<CR>w99[{
 map }][ /]}<CR>b99]]
 map ]] j0[[%/{<CR>
 map [] k$}][%?]]<CR>
-map = <Esc>`<dwgv=`<<C-v>`>I<C-r>"<Esc>
+noremap = <Esc>`<dwgv=`<<C-v>`>I<C-r>"<Esc>
 map <space> <c-f>
-map <bs> <c-u>
+map <bs> X
 map <s-b> <c-u>
 
 set tags+=../tags
