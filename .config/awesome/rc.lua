@@ -47,13 +47,14 @@ if a then
 	terminal = "xfce4-terminal" 
 elseif os.getenv("COLORTERM") then
 	terminal = os.getenv("COLORTERM")
+else
+  terminal = "x-terminal-emulator"
 end
-terminal = "x-terminal-emulator"
 
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
-os.execute("xset r rate 210 20 &")
+os.execute("xset r rate 220 20 2> /dev/null &")
 --os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
 function start_daemon(dae)
   daeCheck = os.execute("ps -eF | grep -v grep | grep -w " .. dae)

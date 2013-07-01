@@ -1,0 +1,12 @@
+[user]
+	name = kk
+	email = sevkme@gmail.com
+[credential]
+	helper = cache --timeout=3600
+[apply]
+	whitespace = nowarn
+[core]
+	whitespace = 
+	gitproxy = 
+[color]
+	ui = auto

@@ -16,7 +16,7 @@ alias s3='scr.rb 3'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 
-if [ -z `which xset` ]; then xsetr rate 210 20 &
+if [ -z `which xset` ]; then xsetr rate 220 20 &
 fi
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
@@ -53,10 +53,9 @@ unset local256
 
 if [ -z "$BASHRC_" ] 
 then
-  sleep 0
   export BASHRC_=" bashrc ed yet"
   source ~/.bashrc
 else
   echo $BASHRC_
-  sleep 0
 fi
+
