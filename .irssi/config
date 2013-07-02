@@ -298,7 +298,7 @@ settings = {
   };
   "perl/core/scripts" = {
     #beep_cmd = "beep -f 2000 -n -f 1500 -n -f 1000 &";
-    beep_cmd = "exec aplay /home/BAK/sevk/Sent.wav -q > /dev/null &";
+    beep_cmd = "exec aplay /home/BAK/sevk/Sent.wav -q 2> /dev/null &";
     beep_flood = "700";
     usercount_show_halfops = "yes";
     notify_time = "100";
