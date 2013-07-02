@@ -305,5 +305,7 @@ settings = {
   };
   "irc/core" = { ban_type = "Host"; };
 };
-ignores = ( );
+ignores = (
+  { level = "JOINS PARTS QUITS"; channels = ( "#archlinux" ); }
+);
 conversions = { "#sevk" = "utf-8"; };
