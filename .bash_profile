@@ -16,7 +16,7 @@ alias s3='scr.rb 3'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 
-[ -z `which xset` ] || xset r rate 220 20 &
+[ -z `which xset` ] || xset r rate 240 50 &
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
