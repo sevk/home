@@ -45,7 +45,6 @@ set expandtab   " 用 space 代替 tab
 set noswf       " 交换文件 .xxx.swp
 
 "set foldmethod=syntax "折叠模式
-set foldmethod=indent
 
 set ruler        " 顯示右下角設定值
 set backspace=2  " 在 insert 也可用 backspace
@@ -70,9 +69,9 @@ else
 endif
 
 "powerline{
+"* change the theme (available options: dark, light, simple, badwolf)
+  let g:airline_theme='badwolf'
   set laststatus=2
-  let g:Powerline_symbols = 'unicode'
-  "let g:Powerline_symbols = 'fancy'
 "}
 "set statusline=\ %4*%<\%m%<[%f\%r%h%w]%h%k\ [%{&ff},%{&fileencoding},%Y]%=\ L=%l,C=%v,%p%%\ %a\ %c
 
@@ -111,7 +110,7 @@ map [[ ?{<CR>w99[{
 map }][ /]}<CR>b99]]
 map ]] j0[[%/{<CR>
 map [] k$}][%?]]<CR>
-map <space> <c-f>
+map <space> :+7<cr>
 map <bs> X
 map <s-b> <c-u>
 
@@ -123,7 +122,7 @@ set nocp
 
 " vim-scripts repos
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-     set rtp+=~/dotfiles/vim/bundle/vundle/
+     set rtp+=/home/kk/dotfiles/vim/bundle/vundle/
      call vundle#rc()
 
      " let Vundle manage Vundle
@@ -197,9 +196,16 @@ Bundle 'c.vim'
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'vim-align'
 Bundle 'git://github.com/wincent/Command-T.git'
-Bundle 'git://github.com/Lokaltog/vim-powerline.git'
-Bundle 'g3orge/vim-voogle.git'
+"Bundle 'git://github.com/Lokaltog/vim-powerline.git'
+Bundle 'bling/vim-airline'
 
+"selected search
+noremap gss "zy:!w3m "http://www.google.com.hk/search?q=<c-r>=substitute(@z,' ','%20','g')<cr>"<return>
+
+"cword search
+noremap gsw ":!w3m "http://www.google.com.hk/search?q=<cword>"<return>
+noremap gsc ":!chromium-browser "http://www.google.com.hk/search?q=<cword>"<return>
+noremap gsf ":!firefox "http://www.google.com.hk/search?q=<cword>"<return>
 
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -209,7 +215,7 @@ autocmd BufReadPost *
 "set guifont=DejaVu\ Sans\ Mono:h14:cANSI "设置字体，h代表字体大小 
 "set nobackup "不自动备份
 if has('gui_running')
-   set guifont=Monospace\ 16
+   set guifont=Monospace\ 15
 endif
 
 "set lines=26 "
@@ -367,5 +373,4 @@ else
 endif
 endf
 " """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
-set nu
 set cindent

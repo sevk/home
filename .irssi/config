@@ -1,10 +1,12 @@
 servers = (
   {
-    address = "irc.freenode.net";
+    address = "chat.freenode.net";
     chatnet = "ub";
-    use_ssl = "yes";
-    ssl_verify = "no";
     port = "7070";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    ssl_cafile = "~/.irssi/a.crt";
+    autoconnect = "no";
   },
 
   { 
@@ -25,9 +27,9 @@ servers = (
 );
 
 chatnets = {
-  ub1 = { type = "IRC"; autosendcmd = "/ns id"; };
-  ub = { type = "IRC"; autosendcmd = "/ns id "; };
-  fr = { type = "IRC"; autosendcmd = "/nick kk ; /ns id "; };
+  ub1 = { type = "IRC"; autosendcmd = ""; };
+  ub = { type = "IRC"; autosendcmd = ""; };
+  fr = { type = "IRC"; autosendcmd = ""; };
 
   freenode = {
     type = "IRC";
@@ -305,5 +307,5 @@ settings = {
   };
   "irc/core" = { ban_type = "Host"; };
 };
-ignores = ( );
+ignores = ( { mask = "freenode"; level = "JOINS PARTS QUITS"; } );
 conversions = { "#sevk" = "utf-8"; };
