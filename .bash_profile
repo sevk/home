@@ -2,6 +2,7 @@
 
 echo " exe bash_profile"
 
+alias grep='grep -iR --color=auto'
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
