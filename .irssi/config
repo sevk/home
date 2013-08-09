@@ -288,8 +288,9 @@ settings = {
     real_name = "iIlL10Oo";
     user_name = "iIlL10Oo";
     nick = "iIlL10Oo";
-    recode = "yes";
+    recode = "no";
     timestamp_format = "%H%M%S";
+    server_reconnect_time = "10min";
   };
   "fe-text" = { actlist_sort = "refnum"; scrollback_lines = "150"; };
   "fe-common/core" = {
@@ -306,6 +307,7 @@ settings = {
     notify_time = "100";
   };
   "irc/core" = { ban_type = "Host"; };
+  "fe-common/irc" = { netsplit_max_nicks = "20"; };
 };
 ignores = ( { mask = "freenode"; level = "JOINS PARTS QUITS"; } );
 conversions = { "#sevk" = "utf-8"; };

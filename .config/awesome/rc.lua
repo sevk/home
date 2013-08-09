@@ -240,8 +240,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Shift" }, "Print" , 
         function () 
           --awful.util.spawn("scrot -sb -e 'mv $f /tmp/ ' ") 
-          os.execute("scrot -sb -e 'mv $f /tmp/ ' ")
-          os.execute("sleep 0.5")
+          --os.execute("scrot -sb -e 'mv $f /tmp/ ' & ")
           naughty.notify({ title="Screenshot", text="The full screen captured" })
         end),
 
@@ -296,8 +295,8 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     --awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Shift"  }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"  }, "q", awesome.quit),
+    --awful.key({ modkey, "Shift"  }, "r", awesome.restart),
+    --awful.key({ modkey, "Shift"  }, "q", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),

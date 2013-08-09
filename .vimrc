@@ -110,8 +110,6 @@ map [[ ?{<CR>w99[{
 map }][ /]}<CR>b99]]
 map ]] j0[[%/{<CR>
 map [] k$}][%?]]<CR>
-map <space> :+7<cr>
-map <bs> X
 map <s-b> <c-u>
 
 set tags+=../tags
@@ -189,6 +187,10 @@ Bundle 'The-NERD-Commenter'
 "Bundle 'restart.vim'
 Bundle 'taglist.vim'
 Bundle 'c.vim'
+Bundle 'danchoi/ri.vim'
+"edit ~/.vim/bundle/ri.vim/plugin/ri_vim.rb
+"del line 5
+
 "Bundle 'templates.vim'
 "Bundle 'vimim.vim'
 "Bundle 'ZenCoding.vim'
@@ -215,7 +217,7 @@ autocmd BufReadPost *
 "set guifont=DejaVu\ Sans\ Mono:h14:cANSI "设置字体，h代表字体大小 
 "set nobackup "不自动备份
 if has('gui_running')
-   set guifont=Monospace\ 15
+   set guifont=Monospace\ 12
 endif
 
 "set lines=26 "

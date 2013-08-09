@@ -2,6 +2,8 @@
 
 echo " exe bash_profile"
 
+alias scrot="scrot -s -e 'mv \$f /tmp/'"
+alias grep='grep -Ii'
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
