@@ -79,6 +79,7 @@ map <c-s> :w!<cr>
 map <m-c> <ESC>:colo kkruby<ESC>
 map  <f2> :call C_Make()<CR>
 imap <f2> :call C_Make()<CR>
+map <f9> :rake
 map  <f8> :!make install<CR>
 imap <f8> :!make install<CR>
 map <f3> <ESC>:bp<cr>

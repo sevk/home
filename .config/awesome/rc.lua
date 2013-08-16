@@ -259,7 +259,7 @@ globalkeys = awful.util.table.join(
             --if client.focus then client.focus:raise() end
         --end),
 
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+    --awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
     --awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),

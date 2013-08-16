@@ -306,7 +306,10 @@ settings = {
     usercount_show_halfops = "yes";
     notify_time = "100";
   };
-  "irc/core" = { ban_type = "Host"; };
+  "irc/core" = {
+    ban_type = "Host";
+    lag_max_before_disconnect = "525600min";
+  };
   "fe-common/irc" = { netsplit_max_nicks = "20"; };
 };
 ignores = ( { mask = "freenode"; level = "JOINS PARTS QUITS"; } );
