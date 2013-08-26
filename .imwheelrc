@@ -260,7 +260,7 @@ None,	Up,		Delete
 #
 ".*"
 None, Up, Button4, 8
-None, Down, Button5, 8
+None, Down, Button5, 6
 #@Priority=-1000
 #@Exclude
 #

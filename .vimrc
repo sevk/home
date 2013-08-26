@@ -188,6 +188,8 @@ Bundle 'The-NERD-Commenter'
 "Bundle 'restart.vim'
 Bundle 'taglist.vim'
 Bundle 'c.vim'
+Bundle 'm2ym/rsense'
+
 Bundle 'danchoi/ri.vim'
 "edit ~/.vim/bundle/ri.vim/plugin/ri_vim.rb
 "del line 5

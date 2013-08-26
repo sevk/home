@@ -411,10 +411,10 @@ awful.rules.rules = {
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { },
       properties = { size_hints_honor = false } },
-    { rule = { class = "Firefox" },
-      properties = { tag = tags[1][1] } },
-    { rule = { class = "VirtualBox" },
-      properties = { tag = tags[1][3] } },
+    --{ rule = { class = "Firefox" },
+      --properties = { tag = tags[1][1] } },
+    --{ rule = { class = "VirtualBox" },
+      --properties = { tag = tags[1][3] } },
 }
 -- }}}
 
