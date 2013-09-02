@@ -314,3 +314,12 @@ settings = {
 };
 ignores = ( { mask = "freenode"; level = "JOINS PARTS QUITS"; } );
 conversions = { "#sevk" = "utf-8"; };
+keyboard = (
+  { key = "^F"; id = "scroll_forward"; data = ""; },
+  { key = "^R"; id = "scroll_forward"; data = ""; },
+  { key = "meta-N"; id = "scroll_forward"; data = ""; },
+  { key = "^N"; id = "scroll_forward"; data = ""; },
+  { key = "^P"; id = "scroll_backward"; data = ""; },
+  { key = "^f"; id = "scroll_forward"; data = ""; },
+  { key = "^WC"; id = "command"; data = "wc "; }
+);
