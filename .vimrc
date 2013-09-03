@@ -87,8 +87,8 @@ imap <f3> <ESC>:bp<cr>
 imap <f5> def initialize(
 "map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR>
 map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git . -e " . expand("<cword>") . " " <bar> cwindow<CR>
-map <C-f12> :set paste<cr>
-map <C-f11> :set nopaste<cr>
+map <C-f12> "*p
+imap <C-f12> <esc>"*pa
 
 map <C-d> :NERDTreeToggle<CR>
 "map <C-h> \c<space>
