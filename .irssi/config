@@ -313,12 +313,10 @@ settings = {
   "fe-common/irc" = { netsplit_max_nicks = "20"; };
 };
 ignores = (
-  { mask = "freenode"; level = "JOINS PARTS QUITS"; },
-  { mask = "ruby"; level = "JOINS PARTS QUITS"; },
-  { mask = "ubuntu"; level = "JOINS PARTS QUITS"; },
-  { mask = "ruby-lang"; level = "JOINS PARTS QUITS"; },
   { level = "JOINS PARTS QUITS"; channels = ( "#ubuntu" ); },
-  { mask = "gentoo"; level = "JOINS PARTS QUITS"; }
+  { level = "JOINS PARTS QUITS"; channels = ( "#ruby" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#gentoo" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#ruby-lang" ); }
 );
 conversions = { "#sevk" = "utf-8"; };
 keyboard = (

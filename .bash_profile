@@ -18,6 +18,7 @@ alias s3='scr.rb 3'
 #alias nau='nautilus-real --no-desktop $@'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
+export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
 
 [ -z `which xset` ] || xset r rate 240 60 &
 
@@ -66,7 +67,7 @@ if [[ ${EUID} == 0 ]] ; then
   ps1_color="\[\033[0;31m\]";
   user_host="\h"
 else
-  ps1_color="\[\033[0;34m\]";
+  ps1_color="\[\033[0;35m\]";
   user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
 fi
 export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"

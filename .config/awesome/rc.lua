@@ -8,7 +8,7 @@ require("beautiful")
 require("naughty")
 
 -- Load Debian menu entries
-require("debian.menu")
+--require("debian.menu")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -54,18 +54,12 @@ end
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
-os.execute("xset r rate 220 20 2> /dev/null &")
 --os.execute("/usr/bin/gnome-keyring-daemon --start --components=gpg & ")
 function start_daemon(dae)
   daeCheck = os.execute("ps -eF | grep -v grep | grep -w " .. dae)
   if (daeCheck ~= 0) then
     os.execute(dae .. " &")
   end
-end
-
-procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
-for k = 1, #procs do
-  --start_daemon(procs[k])
 end
 
 -- Default modkey.
@@ -113,7 +107,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
+                                    --{ "Debian", debian.menu.Debian_menu.Debian },
                                     { "open terminal", terminal }
                                   }
                         })
@@ -236,9 +230,14 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod4" }, "e", function () awful.util.spawn("pcmanfm") end),
     awful.key({ modkey, "Control" }, "e", function () awful.util.spawn("pcmanfm") end),
 
+    awful.key({}, "XF86AudioMute", function()
+      -- bin/m -> /home/kk/dotfiles/m.rb
+      awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
+    end),
+
     -- 107 is Print
     awful.key({ "Shift" }, "Print" , 
-        function () 
+    function () 
           --awful.util.spawn("scrot -sb -e 'mv $f /tmp/ ' ") 
           --os.execute("scrot -sb -e 'mv $f /tmp/ ' & ")
           naughty.notify({ title="Screenshot", text="The full screen captured" })
@@ -248,6 +247,14 @@ globalkeys = awful.util.table.join(
     --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+    --amixer sset Master toggle
+    --awful.key({ "Shift" }, "#" .. 21 + 0x39,  --加0x39变成 f1~f9 , alt+1另有用 
+        --function () 
+          --os.execute("amixer sset Master toggle &")
+          --naughty.notify({ title="un mute", text="mute / unmute" })
+        --end),
+
+    --
     --awful.key({ modkey,           }, "j",
         --function ()
             --awful.client.focus.byidx( 1)
@@ -447,4 +454,76 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+local xrun_now = function(name, cmd)
+   -- Try first the list of clients from awesome (which is available
+   -- only if awesome has fully started, therefore, this function
+   -- should be run inside a 0 timer)
+   local squid = { name, name:sub(1,1):upper() .. name:sub(2) }
+   if awful.client.cycle(
+      function(c)
+	 return awful.rules.match_any(c,
+				      { name = squid,
+					class = squid,
+					instance = squid })
+      end)() then
+      return
+   end
+
+   -- Not found, let's check with xwininfo. We can only check name but
+   -- we can catch application without a window...
+   if os.execute("xwininfo -name '" .. name .. "' > /dev/null 2> /dev/null") == 0 then
+      return
+   end
+   awful.util.spawn_with_shell(cmd or name)
+end
+
+-- Run a command if not already running.
+xrun = function(name, cmd)
+   -- We need to wait for awesome to be ready. Hence the timer.
+   local stimer = timer { timeout = 0 }
+   local run = function()
+      stimer:stop()
+      xrun_now(name, cmd)
+   end
+   stimer:add_signal("timeout", run)
+   stimer:start()
+end
+
+function run_once1(prg,arg_string,pname,screen)
+    if not prg then
+        do return nil end
+    end
+    if not pname then
+       pname = prg
+    end
+
+    if not arg_string then 
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
+    else
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. " ".. arg_string .."' || (" .. prg .. " " .. arg_string .. ")",screen)
+    end
+end
+--run_once("xscreensaver","-no-splash")
+--run_once("pidgin",nil,nil,2)
+function run_once(cmd)
+  findme = cmd
+  firstspace = cmd:find(" ")
+  if firstspace then
+    findme = cmd:sub(0, firstspace-1)
+  end
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || ( DISPLAY=:0 " .. cmd .. ")")
+end
+run_once("xset r rate 230 60")
+run_once("xpad&")
+xrun("chromium-browser&")
+xrun("imwheel -k&")
+--run_once("fcitx -d")
+--run_once("stardict&")
+procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
+--for k = 1, #procs do
+  --start_daemon(procs[k])
+--end
+
+
 -- }}}
