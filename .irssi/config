@@ -2,7 +2,7 @@ servers = (
   {
     address = "chat.freenode.net";
     chatnet = "ub";
-    port = "7070";
+    port = "6697";
     use_ssl = "yes";
     ssl_verify = "yes";
     ssl_cafile = "~/.irssi/a.crt";
