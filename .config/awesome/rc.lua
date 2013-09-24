@@ -230,6 +230,12 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod4" }, "e", function () awful.util.spawn("pcmanfm") end),
     awful.key({ modkey, "Control" }, "e", function () awful.util.spawn("pcmanfm") end),
 
+    awful.key({ modkey, "Control" }, "m",function ()
+      awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
+    end),
+    awful.key({ "Mod4" }, "m", function () 
+      awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
+    end),
     awful.key({}, "XF86AudioMute", function()
       -- bin/m -> /home/kk/dotfiles/m.rb
       awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
