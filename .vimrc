@@ -58,7 +58,7 @@ set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=100  " 保留 100 個使用過的指令
 "set cursorline   " 顯示目前的游標位置
 "set rnu        "行号
-"set nu        "行号
+set nu        "行号
 set scrolloff=8  "光标前后保留10行
 
 "export TERM=xterm-256color
@@ -235,85 +235,6 @@ au filetype rb,c,cpp,haskell,makefile,vim IndentGuidesEnable
 let g:agprg="<custom-ag-path-goes-here> -H --nocolor --nogroup --column"
 "map <F4> :Ag <cword><cr>
 set dy=uhex "^A^B => <xx><xx>
-
-map <S-F12> :call Do_CsTag()<CR>
-"0 或 s: 查找本 C 符号
-"1 或 g: 查找本定义
-"2 或 d: 查找本函数调用的函数
-"3 或 c: 查找调用本函数的函数
-"4 或 t: 查找本字符串
-"6 或 e: 查找本 egrep 模式
-"7 或 f: 查找本文件
-"8 或 i: 查找包含本文件的文件
-nmap <C-a>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-a>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-a>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-a>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-a>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-a>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-a>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
-nmap <C-a>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
-function Do_CsTag()
-    let dir = getcwd()
-    "if filereadable("tags")
-        "if(g:iswindows==1)
-            "let tagsdeleted=delete(dir."\\"."tags")
-        "else
-            "let tagsdeleted=delete("./"."tags")
-        "endif
-        "if(tagsdeleted!=0)
-            "echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
-            "return
-        "endif
-    "endif
-    if has("cscope")
-        silent! execute "cs kill -1"
-    endif
-    "if filereadable("cscope.files")
-        "if(g:iswindows==1)
-            "let csfilesdeleted=delete(dir."\\"."cscope.files")
-        "else
-            "let csfilesdeleted=delete("./"."cscope.files")
-        "endif
-        "if(csfilesdeleted!=0)
-            "echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
-            "return
-        "endif
-    "endif
-    "if filereadable("cscope.out")
-        "if(g:iswindows==1)
-            "let csoutdeleted=delete(dir."\\"."cscope.out")
-        "else
-            "let csoutdeleted=delete("./"."cscope.out")
-        "endif
-        "if(csoutdeleted!=0)
-            "echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
-            "return
-        "endif
-    "endif
-    if(executable('ctags'))
-        execute "!make tags"
-        "execute "!rake tags"
-    endif
-    if(executable('cscope') && has("cscope") )
-
-        if(g:iswindows!=1)
-            silent! execute "!find . -name '*.h' -name '*.c' -name '*.cpp' -iname '*.rb' -o -name '*.java' -o -name '*.cs' > cscope.files"
-        else
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.rb,*.java,*.cs >> cscope.files"
-        endif
-        silent! execute "!cscope -b"
-        execute "normal :"
-
-           map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
-           map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
-           map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
-
-        if filereadable("cscope.out")
-            execute "cs add cscope.out"
-        endif
-    endif
-endfunction
 
 "进行Tlist的设置
 "TlistUpdate可以更新tags
