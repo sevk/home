@@ -73,3 +73,4 @@ fi
 export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
 unset ps1_color user_host
 
+alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
