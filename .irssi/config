@@ -2,7 +2,7 @@ servers = (
   {
     address = "irc.freenode.net";
     chatnet = "ub";
-    port = "7070";
+    port = "6697";
     use_ssl = "yes";
     #ssl_verify = "yes";
     #ssl_cafile = "~/.irssi/a.crt";
@@ -288,8 +288,9 @@ settings = {
     real_name = "iIlL10Oo";
     user_name = "iIlL10Oo";
     nick = "iIlL10Oo";
-    recode = "yes";
+    recode = "no";
     timestamp_format = "%H%M%S";
+    server_reconnect_time = "10min";
   };
   "fe-text" = { actlist_sort = "refnum"; scrollback_lines = "150"; };
   "fe-common/core" = {
@@ -305,7 +306,27 @@ settings = {
     usercount_show_halfops = "yes";
     notify_time = "100";
   };
-  "irc/core" = { ban_type = "Host"; };
+  "irc/core" = {
+    ban_type = "Host";
+    lag_max_before_disconnect = "525600min";
+  };
+  "fe-common/irc" = { netsplit_max_nicks = "20"; };
 };
-ignores = ( { mask = "freenode"; level = "JOINS PARTS QUITS"; } );
+ignores = (
+  { level = "JOINS PARTS QUITS"; channels = ( "#ubuntu" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#ruby" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#gentoo" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#ruby-lang" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#vim" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#archlinux" ); }
+);
 conversions = { "#sevk" = "utf-8"; };
+keyboard = (
+  { key = "^F"; id = "scroll_forward"; data = ""; },
+  { key = "^R"; id = "scroll_forward"; data = ""; },
+  { key = "meta-N"; id = "scroll_forward"; data = ""; },
+  { key = "^N"; id = "scroll_forward"; data = ""; },
+  { key = "^P"; id = "scroll_backward"; data = ""; },
+  { key = "^f"; id = "scroll_forward"; data = ""; },
+  { key = "^WC"; id = "command"; data = "wc "; }
+);

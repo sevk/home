@@ -259,8 +259,8 @@ None,	Up,		Delete
 # This kinda defeats the original purpose of the program! ;)
 #
 ".*"
-None, Up, Button4, 8
-None, Down, Button5, 8
+None, Up, Button4, 7
+None, Down, Button5, 5
 #@Priority=-1000
 #@Exclude
 #

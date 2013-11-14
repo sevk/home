@@ -4,6 +4,7 @@ echo " exe bash_profile"
 alias fbterm='fbterm -s 15'
 alias emerge='time emerge -v '
 alias grep='grep -iR --color=auto'
+alias scrot="scrot -s -e 'mv \$f /tmp/'"
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
@@ -16,6 +17,7 @@ alias s2='scr.rb 2'
 alias s3='scr.rb 3'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
+export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
 
 [ -x /bin/xset ] && xset r rate 230 60
 
@@ -66,3 +68,15 @@ else
   fbterm
 fi
 
+#PS1
+if [[ ${EUID} == 0 ]] ; then
+  ps1_color="\[\033[0;31m\]";
+  user_host="\h"
+else
+  ps1_color="\[\033[0;35m\]";
+  user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
+fi
+export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
+unset ps1_color user_host
+
+alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
