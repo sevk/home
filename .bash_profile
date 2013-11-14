@@ -1,7 +1,8 @@
-#export RUBY_CFLAGS="-march=native -O3"
 
 echo " exe bash_profile"
 
+alias fbterm='fbterm -s 15'
+alias emerge='time emerge -v '
 alias grep='grep -iR --color=auto'
 alias aps='aptitude search'
 alias apw='aptitude show'
@@ -13,11 +14,10 @@ alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
 alias s3='scr.rb 3'
-#alias nau='nautilus-real --no-desktop $@'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 
-[ -z `which xset` ] || xset r rate 240 60 &
+[ -x /bin/xset ] && xset r rate 230 60
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -57,5 +57,12 @@ then
   source ~/.bashrc
 else
   echo $BASHRC_
+fi
+
+export WINEDLLOVERRIDES='winemenubuilder.exe=d'
+if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
+  exec startx
+else
+  fbterm
 fi
 
