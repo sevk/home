@@ -1,9 +1,9 @@
 
 echo " exe bash_profile"
 
-alias fbterm='fbterm -s 15'
+alias fbterm='jfbterm'
 alias emerge='time emerge -v '
-alias grep='grep -iR --color=auto'
+alias grep='grep -i --color=auto'
 alias scrot="scrot -s -e 'mv \$f /tmp/'"
 alias aps='aptitude search'
 alias apw='aptitude show'
@@ -55,18 +55,13 @@ unset local256
 
 if [ -z "$BASHRC_" ] 
 then
-  export BASHRC_=" bashrc ed yet"
+  BASHRC_=" bashrc ed yet"
   source ~/.bashrc
 else
   echo $BASHRC_
 fi
 
 export WINEDLLOVERRIDES='winemenubuilder.exe=d'
-if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
-  exec startx
-else
-  fbterm
-fi
 
 #PS1
 if [[ ${EUID} == 0 ]] ; then
@@ -76,7 +71,17 @@ else
   ps1_color="\[\033[0;35m\]";
   user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
 fi
-export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
+#export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
 unset ps1_color user_host
 
 alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
+source dotfiles/git-completion.bash 
+
+if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
+  echo "1" ;
+else
+  echo 2;
+  if [ $TERM == "linux" ]; then
+    jfbterm;
+  fi
+fi

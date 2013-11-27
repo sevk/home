@@ -524,8 +524,8 @@ run_once("xset r rate 230 60")
 run_once("xpad&")
 xrun("chromium-browser&")
 xrun("imwheel -k&")
---run_once("fcitx -d")
---run_once("stardict&")
+run_once("stardict&")
+--xrun("fcitx -d&")
 procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
 --for k = 1, #procs do
   --start_daemon(procs[k])
