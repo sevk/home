@@ -1,7 +1,7 @@
 
 echo " exe bash_profile"
 
-alias fbterm='jfbterm'
+alias jb='jfbterm'
 alias emerge='time emerge -v '
 alias grep='grep -i --color=auto'
 alias scrot="scrot -s -e 'mv \$f /tmp/'"
@@ -78,10 +78,11 @@ alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
 source dotfiles/git-completion.bash 
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
-  echo "1" ;
+  exec awesome
+  echo 1 ;
 else
   echo 2;
-  if [ $TERM == "linux" ]; then
+  if [[ $TERM == "linux" && $USER != "root" ]]; then
     jfbterm;
   fi
 fi
