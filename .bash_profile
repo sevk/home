@@ -4,7 +4,7 @@ echo " exe bash_profile"
 
 
 alias scrot="scrot -s -e 'mv \$f /tmp/'"
-alias grep='grep -iIR --color=auto'
+alias grep='grep -iI --color=auto'
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
@@ -20,7 +20,7 @@ alias s3='scr.rb 3'
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
 
-[ -z `which xset` ] || xset r rate 240 60 &
+[ -z `which xset` ] || xset r rate 240 60
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -54,13 +54,16 @@ if [ -n "$local256" ] || [ -n "$SEND_256_COLORS_TO_REMOTE" ]; then
 fi
 unset local256
 
+echo $BASHRC_
 if [ -z "$BASHRC_" ] 
 then
-  export BASHRC_=" bashrc ed yet"
+  export BASHRC_="bashrc ed yet"
   source ~/.bashrc
 else
   echo $BASHRC_
 fi
+#unset BASH_PRO_
+#unset BASHRC_
 
 #PS1
 if [[ ${EUID} == 0 ]] ; then
@@ -71,6 +74,22 @@ else
   user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
 fi
 export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+c_1="\[\e[0m\]"
+c0="\[\e[30m\]"
+c1="\[\e[31m\033[1m\]"
+c2="\[\e[32m\033[1m\]"
+c3="\[\e[33m\]"
+c4="\[\e[34m\]"
+c5="\[\e[35m\]"
+c6="\[\e[36m\]"
+c7="\[\e[37m\]"
+
+PS1="\H\s \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
 alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
+
