@@ -1,10 +1,10 @@
-#export RUBY_CFLAGS="-march=native -O3"
 
 echo " exe bash_profile"
 
-
+alias jb='jfbterm'
+alias emerge='time emerge -v '
+alias grep='grep -i --color=auto'
 alias scrot="scrot -s -e 'mv \$f /tmp/'"
-alias grep='grep -iI --color=auto'
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
@@ -15,12 +15,11 @@ alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
 alias s3='scr.rb 3'
-#alias nau='nautilus-real --no-desktop $@'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
 
-[ -z `which xset` ] || xset r rate 240 60
+[ -x /bin/xset ] && xset r rate 230 60
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -65,6 +64,8 @@ fi
 #unset BASH_PRO_
 #unset BASHRC_
 
+export WINEDLLOVERRIDES='winemenubuilder.exe=d'
+
 #PS1
 if [[ ${EUID} == 0 ]] ; then
   ps1_color="\[\033[0;31m\]";
@@ -73,6 +74,7 @@ else
   ps1_color="\[\033[0;35m\]";
   user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
 fi
+
 export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
 
 parse_git_branch() {
@@ -91,5 +93,15 @@ c7="\[\e[37m\]"
 PS1="\H\s \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
-alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
+source dotfiles/git-completion.bash 
+
+if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
+  exec awesome
+  echo 1 ;
+else
+  echo 2;
+  if [[ $TERM == "linux" && $USER != "root" ]]; then
+    jfbterm;
+  fi
+fi
 

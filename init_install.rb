@@ -18,4 +18,4 @@ wget http://scripts.irssi.org/scripts/usercount.pl
 wget http://scripts.irssi.org/scripts/nickcolor.pl
 wget http://scripts.irssi.org/scripts/beep_beep.pl
 
-
+wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
