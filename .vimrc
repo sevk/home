@@ -191,6 +191,7 @@ Bundle 'taglist.vim'
 Bundle 'c.vim'
 Bundle 'm2ym/rsense'
 Bundle 'danchoi/ri.vim'
+Bundle 'plasticboy/vim-markdown'
 "Bundle 'templates.vim'
 "Bundle 'vimim.vim'
 "Bundle 'ZenCoding.vim'
@@ -298,4 +299,8 @@ endif
 endf
 " """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
 set cindent
+
+" markdown viewer
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_initial_foldlevel=1
 

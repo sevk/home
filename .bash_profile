@@ -56,6 +56,7 @@ unset local256
 echo $BASHRC_
 if [ -z "$BASHRC_" ] 
 then
+  export BASH_PRO_=" bash_prof ed yet"
   export BASHRC_="bashrc ed yet"
   source ~/.bashrc
 else
@@ -93,7 +94,7 @@ c7="\[\e[37m\]"
 PS1="\H\s \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
-source dotfiles/git-completion.bash 
+source dotfiles/git-completion.bash 2>/dev/null
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
