@@ -42,14 +42,8 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 --terminal = "uxterm"
-a= os.execute("type xfce4-terminal")
-if a then 
-	terminal = "xfce4-terminal" 
-elseif os.getenv("COLORTERM") then
-	terminal = os.getenv("COLORTERM")
-else
-  terminal = "x-terminal-emulator"
-end
+terminal = os.execute("/kk/.rvm/rubies/ruby-2.0.0-p353/bin/ruby /kk/dotfiles/term.rb" )
+print(terminal == "terminal")
 
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor

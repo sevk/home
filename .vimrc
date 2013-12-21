@@ -13,13 +13,14 @@ syntax match ColorColumn /\%>87v.\+/
 set list "显示空格和行尾"
 "set cpt=t "补全方式
 if has("win32")
-   set rtp+=G:\dev\vundle
+  set rtp+=G:\dev\vundle
 	set termencoding=cp936
 	language messages zh_CN.UTF-8
 	behave mswin
 	set listchars=trail:P
 	set lcs=tab:\ \|
 el
+  "set rtp+=~/.vim/
 	"显示行尾
 	set encoding=utf-8
 	set listchars=trail:\♥

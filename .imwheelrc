@@ -258,9 +258,9 @@ None,	Up,		Delete
 # wheel functionality contained in some KDE and other newer programs.
 # This kinda defeats the original purpose of the program! ;)
 #
-".*"
-None, Up, Button4, 6
-None, Down, Button5, 4
+#".*"
+#None, Up, Button4, 400
+#None, Down, Button5, 200
 #@Priority=-1000
 #@Exclude
 #

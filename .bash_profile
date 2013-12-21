@@ -1,8 +1,10 @@
 
 echo " exe bash_profile"
 
+alias w3m='w3m google.com'
 alias jb='jfbterm'
 alias emerge='time emerge -v '
+alias make='time make '
 alias grep='grep -i --color=auto'
 alias scrot="scrot -s -e 'mv \$f /tmp/'"
 alias aps='aptitude search'
@@ -83,6 +85,7 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
 else
   echo 2;
   if [[ $TERM == "linux" && $USER != "root" ]]; then
-    jfbterm;
+    #jfbterm;
+    echo 3;
   fi
 fi
