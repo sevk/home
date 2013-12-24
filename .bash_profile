@@ -1,7 +1,7 @@
 
 echo " exe bash_profile"
 
-alias w3m='w3m google.com'
+alias w3m='w3m www.google.com.sg'
 alias jb='jfbterm'
 alias emerge='time emerge -v '
 alias make='time make '
@@ -55,13 +55,17 @@ if [ -n "$local256" ] || [ -n "$SEND_256_COLORS_TO_REMOTE" ]; then
 fi
 unset local256
 
+echo $BASHRC_
 if [ -z "$BASHRC_" ] 
 then
-  BASHRC_=" bashrc ed yet"
+  export BASH_PRO_=" bash_prof ed yet"
+  export BASHRC_="bashrc ed yet"
   source ~/.bashrc
 else
   echo $BASHRC_
 fi
+#unset BASH_PRO_
+#unset BASHRC_
 
 export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 
@@ -73,11 +77,26 @@ else
   ps1_color="\[\033[0;35m\]";
   user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
 fi
-#export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
+
+export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+c_1="\[\e[0m\]"
+c0="\[\e[30m\]"
+c1="\[\e[31m\033[1m\]"
+c2="\[\e[32m\033[1m\]"
+c3="\[\e[33m\]"
+c4="\[\e[34m\]"
+c5="\[\e[35m\]"
+c6="\[\e[36m\]"
+c7="\[\e[37m\]"
+
+PS1="\H\s \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
-alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
-source dotfiles/git-completion.bash 
+source dotfiles/git-completion.bash 2>/dev/null
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
@@ -89,3 +108,4 @@ else
     echo 3;
   fi
 fi
+

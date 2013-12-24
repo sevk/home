@@ -61,6 +61,7 @@ set history=100  " 保留 100 個使用過的指令
 "set rnu        "行号
 set nu        "行号
 set scrolloff=8  "光标前后保留10行
+set clipboard=unnamedplus "使用system剪贴板
 
 "export TERM=xterm-256color
 if &t_Co >= 256 || has('gui_running')
@@ -146,8 +147,8 @@ set nocp
      "Bundle 'https://github.com/vim-ruby/vim-ruby.git'
      Bundle 'nathanaelkane/vim-indent-guides'
      Bundle 'git://github.com/rking/ag.vim.git'
-     Bundle 'vim-scripts/c.vim'
-
+     "Bundle 'gtags.vim'
+     "Bundle 'vim-scripts/textutil.vim'
 
 " Syntax
 "Bundle 'asciidoc.vim'
@@ -190,11 +191,8 @@ Bundle 'The-NERD-Commenter'
 Bundle 'taglist.vim'
 Bundle 'c.vim'
 Bundle 'm2ym/rsense'
-
 Bundle 'danchoi/ri.vim'
-"edit ~/.vim/bundle/ri.vim/plugin/ri_vim.rb
-"del line 5
-
+Bundle 'plasticboy/vim-markdown'
 "Bundle 'templates.vim'
 "Bundle 'vimim.vim'
 "Bundle 'ZenCoding.vim'
@@ -221,7 +219,8 @@ autocmd BufReadPost *
 "set guifont=DejaVu\ Sans\ Mono:h14:cANSI "设置字体，h代表字体大小 
 "set nobackup "不自动备份
 if has('gui_running')
-   set guifont=Monospace\ 12
+   "set guifont=Monospace\ 12
+   set guifont=Vera\ Sans\ YuanTi\ Mono\ 12
 endif
 
 "set lines=26 "
@@ -284,14 +283,14 @@ let g:neocomplcache_auto_completion_start_length=1
 let g:neocomplcache_enable_ignore_case=1
 " """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
+":inoremap ( ()<ESC>i
+":inoremap ) <c-r>=ClosePair(')')<CR>
 :inoremap { {}<ESC>i
 :inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap < <><ESC>i
-:inoremap > <c-r>=ClosePair('>')<CR>
+":inoremap [ []<ESC>i
+":inoremap ] <c-r>=ClosePair(']')<CR>
+":inoremap < <><ESC>i
+":inoremap > <c-r>=ClosePair('>')<CR>
 function ClosePair(char)
 if getline('.')[col('.') - 1] == a:char
   return "\<Right>"
@@ -301,3 +300,8 @@ endif
 endf
 " """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
 set cindent
+
+" markdown viewer
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_initial_foldlevel=1
+

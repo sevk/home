@@ -515,7 +515,7 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || ( DISPLAY=:0 " .. cmd .. ")")
 end
 run_once("xset r rate 230 60")
-run_once("xpad&")
+xrun("xpad&")
 xrun("chromium-browser&")
 xrun("imwheel -k&")
 run_once("stardict&")
