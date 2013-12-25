@@ -68,16 +68,6 @@ fi
 export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 
 #PS1
-if [[ ${EUID} == 0 ]] ; then
-  ps1_color="\[\033[0;31m\]";
-  user_host="\h"
-else
-  ps1_color="\[\033[0;35m\]";
-  user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
-fi
-
-export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
-
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
