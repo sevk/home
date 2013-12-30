@@ -1,10 +1,10 @@
 
 echo " exe bash_profile"
 
+alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
 alias emerge='time emerge -v '
 alias grep='grep -i --color=auto'
-alias scrot="scrot -s -e 'mv \$f /tmp/'"
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
