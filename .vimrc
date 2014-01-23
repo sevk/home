@@ -10,7 +10,7 @@ highlight whitespaceEOL term=reverse ctermbg=red guibg=yellow
 match whitespaceEOL /\s\+\(\%#\)\@!$/
 syntax match whitespaceEOL /\s\+$/
 syntax match ColorColumn /\%>87v.\+/
-set list "显示空格和行尾"
+"set list "显示空格和行尾"
 "set cpt=t "补全方式
 if has("win32")
    set rtp+=G:\dev\vundle
@@ -55,11 +55,11 @@ set incsearch    " 在關鍵字還沒完全輸入完畢前就顯示結果
 set smartindent  " 設定 smartindent
 set autoindent   "自动缩进
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
-set history=100  " 保留 100 個使用過的指令
+set history=90  " 保留 100 個使用過的指令
 "set cursorline   " 顯示目前的游標位置
 "set rnu        "行号
 set nu        "行号
-set scrolloff=8  "光标前后保留10行
+set scrolloff=7  "光标前后保留10行
 set clipboard=unnamedplus "使用system剪贴板
 
 "export TERM=xterm-256color
@@ -77,6 +77,12 @@ endif
 "set statusline=\ %4*%<\%m%<[%f\%r%h%w]%h%k\ [%{&ff},%{&fileencoding},%Y]%=\ L=%l,C=%v,%p%%\ %a\ %c
 
 map <c-s> :w!<cr>
+map ;; :wq <cr>
+map ;s :w <cr>
+map ;q :q <cr>
+map ;a :wq <cr>
+map ;aa :wq! <cr>
+
 map <m-c> <ESC>:colo kkruby<ESC>
 map  <f2> :call C_Make()<CR>
 imap <f2> :call C_Make()<CR>
@@ -108,11 +114,6 @@ map <C-x><C-s> :w <cr>
 map <C-x>s :wa <cr>
 map j gj
 map k gk
-map [[ ?{<CR>w99[{
-map }][ /]}<CR>b99]]
-map ]] j0[[%/{<CR>
-map [] k$}][%?]]<CR>
-map <s-b> <c-u>
 
 set tags+=../tags
 set tags+=tag
@@ -204,7 +205,6 @@ Bundle 'bling/vim-airline'
 
 "selected search
 noremap gss "zy:!w3m "http://www.google.com.hk/search?q=<c-r>=substitute(@z,' ','%20','g')<cr>"<return>
-
 "cword search
 noremap gsw ":!w3m "http://www.google.com.hk/search?q=<cword>"<return>
 noremap gsc ":!chromium-browser "http://www.google.com.hk/search?q=<cword>"<return>
@@ -219,7 +219,8 @@ autocmd BufReadPost *
 "set nobackup "不自动备份
 if has('gui_running')
    "set guifont=Monospace\ 12
-   set guifont=Vera\ Sans\ YuanTi\ Mono\ 12
+   set guifont=kk\ 11
+   "set guifont=Vera\ Sans\ YuanTi\ Mono\ 12
 endif
 
 "set lines=26 "
@@ -237,7 +238,6 @@ set dy=uhex "^A^B => <xx><xx>
 
 "进行Tlist的设置
 "TlistUpdate可以更新tags
-map <c-a><c-a> :Tlist<CR>
 map <c-a>l :Tlist<CR>
 map <mod1-l> :Tlist<CR>
 map <m-9> :Tlist<CR>
@@ -253,15 +253,13 @@ let Tlist_Process_File_Always=0 "是否一直处理tags.1:处理;0:不处理。�
 set completeopt=menuone,menu,longest,preview
 let g:SuperTabRetainCompletionType = 2
 "let g:SuperTabDefaultCompletionType = <C-X><C-O> 
+let g:acp_enableAtStartup = 0
 let g:AutoComplPop_MappingDriven = 0
-let g:acp_enableAtStartup = 1
 let g:acp_ignorecaseOption = 1
 let g:acp_completeOption = '.,w,b,k'
 " """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
 " Use neocomplcache.
-let g:neocomplcache_enable_at_startup =1
+let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Use camel case completion.
@@ -271,7 +269,7 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 1
 " set the max list in the popup menu. increase the speed
-let g:neocomplcache_max_list=20
+let g:neocomplcache_max_list=16
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
@@ -284,8 +282,8 @@ let g:neocomplcache_enable_ignore_case=1
 " """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
 ":inoremap ( ()<ESC>i
 ":inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {}<ESC>i
-:inoremap } <c-r>=ClosePair('}')<CR>
+":inoremap { {}<ESC>i
+":inoremap } <c-r>=ClosePair('}')<CR>
 ":inoremap [ []<ESC>i
 ":inoremap ] <c-r>=ClosePair(']')<CR>
 ":inoremap < <><ESC>i
