@@ -1,6 +1,7 @@
 
 echo " exe bash_profile"
 
+alias 7zz="7z -i@include.list -p a `ruby -e ' p Time.now.strftime(%q(%y%m%d%H%M%S%N_)) + File.basename(Dir.pwd) ' ` "
 alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
 alias emerge='time emerge -v '
@@ -19,7 +20,7 @@ alias s3='scr.rb 3'
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
 
-[ -x /bin/xset ] && xset r rate 230 60
+which xset && xset r rate 230 60
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"

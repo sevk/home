@@ -77,7 +77,7 @@ endif
 "set statusline=\ %4*%<\%m%<[%f\%r%h%w]%h%k\ [%{&ff},%{&fileencoding},%Y]%=\ L=%l,C=%v,%p%%\ %a\ %c
 
 map <c-s> :w!<cr>
-map ;; :wq <cr>
+map ;; :q <cr>
 map ;s :w <cr>
 map ;q :q <cr>
 map ;a :wq <cr>
@@ -102,7 +102,7 @@ map <C-d> :NERDTreeToggle<CR>
 map <C-h> ,c<space>
 map <C-/> ,c<space>
 map <C-h> \c<space>
-map <M-3> ,c<space>
+map <C-3> \c<space>
 "set guicursor=i:ver100-iCursor
 
 map <C-j> :wincmd j<cr>

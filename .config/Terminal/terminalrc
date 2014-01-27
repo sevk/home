@@ -20,4 +20,5 @@ MiscScrollAlternateScreen=TRUE
 ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
 FontName=kk Semi-Bold 12
+Help = FALSE
 
