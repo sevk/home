@@ -7,9 +7,12 @@ vim
 git
 xfonts-intl-chinese
 build-essential
+irssi
 "
-a.each_line do |x|
-  system "apt-get install #{x}"
+if system 'which apt-get'
+  a.each_line do |x|
+    system "apt-get install #{x}"
+  end
 end
 
 mkdir -p .irssi/scripts/autorun
@@ -18,4 +21,5 @@ wget http://scripts.irssi.org/scripts/usercount.pl
 wget http://scripts.irssi.org/scripts/nickcolor.pl
 wget http://scripts.irssi.org/scripts/beep_beep.pl
 
+cd
 wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
