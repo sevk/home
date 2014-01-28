@@ -236,8 +236,16 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod4" }, "m", function () 
       awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
     end),
+    -- own key
+    awful.key({}, "Print", function()
+      awful.util.spawn("/home/kk/dotfiles/zscreen.sh")
+      --awful.util.spawn_with_shell("/home/kk/dev/Scrot-and-imgur-zenity-GUI/src/zscreen.sh")
+    end),
+    awful.key({}, "XF86HomePage", function()
+      awful.util.spawn_with_shell("google-chrome")
+    end),
+
     awful.key({}, "XF86AudioMute", function()
-      -- bin/m -> /home/kk/dotfiles/m.rb
       awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
     end),
 
@@ -286,6 +294,14 @@ globalkeys = awful.util.table.join(
     function ()
       -- awful.client.focus.history.previous()
       awful.client.focus.byidx(-1)
+      if client.focus then
+        client.focus:raise()
+      end
+    end),
+    awful.key({ "Control",           }, "Tab",
+    function ()
+      -- awful.client.focus.history.previous()
+      awful.client.focus.byidx(1)
       if client.focus then
         client.focus:raise()
       end
@@ -518,11 +534,13 @@ function run_once(cmd)
   if firstspace then
     findme = cmd:sub(0, firstspace-1)
   end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || ( DISPLAY=:0 " .. cmd .. ")")
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || ( DISPLAY=:0.0 " .. cmd .. ")")
 end
 run_once("xset r rate 230 60")
-xrun("xpad&")
-xrun("chromium-browser&")
+run_once("xpad&")
+run_once("xload&")
+run_once("oclock&")
+--run_once("chromium-browser&")
 xrun("imwheel -k&")
 run_once("stardict&")
 --xrun("fcitx -d&")
