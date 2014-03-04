@@ -58,7 +58,7 @@ set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=90  " 保留 100 個使用過的指令
 "set cursorline   " 顯示目前的游標位置
 "set rnu        "行号
-set nu        "行号
+"set nu        "行号
 set scrolloff=7  "光标前后保留10行
 set clipboard=unnamedplus "使用system剪贴板
 
@@ -77,11 +77,11 @@ endif
 "set statusline=\ %4*%<\%m%<[%f\%r%h%w]%h%k\ [%{&ff},%{&fileencoding},%Y]%=\ L=%l,C=%v,%p%%\ %a\ %c
 
 map <c-s> :w!<cr>
-map ;; :q <cr>
-map ;s :w <cr>
-map ;q :q <cr>
-map ;a :wq <cr>
-map ;aa :wq! <cr>
+map z; :q <cr>
+map zs :w <cr>
+map zq :q <cr>
+map za :wq <cr>
+map zaa :wq! <cr>
 
 map <m-c> <ESC>:colo kkruby<ESC>
 map  <f2> :call C_Make()<CR>
@@ -144,9 +144,8 @@ set nocp
      
      Bundle 'Shougo/neocomplcache.vim'
      Bundle 'vim-ruby/vim-ruby'
-     "Bundle 'https://github.com/vim-ruby/vim-ruby.git'
      Bundle 'nathanaelkane/vim-indent-guides'
-     Bundle 'git://github.com/rking/ag.vim.git'
+     Bundle 'rking/ag.vim'
      "Bundle 'gtags.vim'
      "Bundle 'vim-scripts/textutil.vim'
 
@@ -190,7 +189,7 @@ Bundle 'The-NERD-Commenter'
 "Bundle 'restart.vim'
 Bundle 'taglist.vim'
 Bundle 'c.vim'
-Bundle 'm2ym/rsense'
+"Bundle 'm2ym/rsense'
 Bundle 'danchoi/ri.vim'
 Bundle 'plasticboy/vim-markdown'
 "Bundle 'templates.vim'
@@ -199,7 +198,7 @@ Bundle 'plasticboy/vim-markdown'
 "Bundle 'css_color.vim'
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'vim-align'
-Bundle 'git://github.com/wincent/Command-T.git'
+"Bundle 'wincent/Command-T'
 "Bundle 'git://github.com/Lokaltog/vim-powerline.git'
 Bundle 'bling/vim-airline'
 

@@ -23,3 +23,7 @@ wget http://scripts.irssi.org/scripts/beep_beep.pl
 
 cd
 wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+
+cd ~/dotfiles/vim/bundle/
+git clone https://github.com/gmarik/vundle.git --depth=1
+
