@@ -333,8 +333,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    --awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    --awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
@@ -438,12 +438,14 @@ awful.rules.rules = {
       properties = { floating = true } },
     -- Private rules
     -- Set Firefox to always map on tags number 2 of screen 1.
-    { rule = { },
-      properties = { size_hints_honor = false } },
+    --{ rule = { },
+      --properties = { size_hints_honor = false } },
     --{ rule = { class = "Firefox" },
       --properties = { tag = tags[1][1] } },
     --{ rule = { class = "VirtualBox" },
       --properties = { tag = tags[1][3] } },
+    { rule = { class = "oclock" },
+      properties = { ontop = true }},
 }
 -- }}}
 
@@ -527,6 +529,7 @@ function run_once1(prg,arg_string,pname,screen)
     end
 end
 --run_once("xscreensaver","-no-splash")
+--run_once("gnome-screensaver",nil) -- err
 --run_once("pidgin",nil,nil,2)
 function run_once(cmd)
   findme = cmd
@@ -534,15 +537,16 @@ function run_once(cmd)
   if firstspace then
     findme = cmd:sub(0, firstspace-1)
   end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || ( DISPLAY=:0.0 " .. cmd .. ")")
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 run_once("xset r rate 230 60")
-run_once("xpad&")
-run_once("xload&")
-run_once("oclock&")
+run_once("xpad")
+run_once("xload")
+run_once("oclock")
 --run_once("chromium-browser&")
-xrun("imwheel -k&")
-run_once("stardict&")
+xrun("imwheel -k")
+--xrun("xpad")
+run_once("stardict")
 --xrun("fcitx -d&")
 procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
 --for k = 1, #procs do
