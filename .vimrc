@@ -142,7 +142,7 @@ set nocp
      " non github repos
      "Bundle 'git://git.wincent.com/command-t.git'
      
-     Bundle 'Shougo/neocomplcache.vim'
+     "Bundle 'Shougo/neocomplcache.vim'
      Bundle 'vim-ruby/vim-ruby'
      Bundle 'nathanaelkane/vim-indent-guides'
      Bundle 'rking/ag.vim'
@@ -189,6 +189,9 @@ Bundle 'The-NERD-Commenter'
 "Bundle 'restart.vim'
 Bundle 'taglist.vim'
 Bundle 'c.vim'
+"Bundle 'Valloric/YouCompleteMe'
+"call pathogen#infect()
+"Bundle 'scrooloose/syntastic'
 "Bundle 'm2ym/rsense'
 Bundle 'danchoi/ri.vim'
 Bundle 'plasticboy/vim-markdown'

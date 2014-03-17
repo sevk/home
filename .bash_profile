@@ -1,8 +1,9 @@
+_start_time=`date +%s.%3N`
 
 echo " exe bash_profile"
 
 alias 7zz="7z -i@include.list -p a `ruby -e ' p Time.now.strftime(%q(%y%m%d%H%M%S%N_)) + File.basename(Dir.pwd) ' ` "
-alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
+#alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
 alias emerge='time emerge -v '
 alias grep='grep -i --color=auto'
@@ -82,10 +83,24 @@ c5="\[\e[35m\]"
 c6="\[\e[36m\]"
 c7="\[\e[37m\]"
 
-PS1="\H\s \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
+cc="\[\e[0m\]" 
+#for i in {1..20} ; do
+  #ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8}m"'` 
+  #ca=$(ruby -e 'print "\e[3#{`hostname`.sum%8}m"') 
+  ca=$(echo "\[\e[3`echo $(hostname|tr 'a-z' '0-9')%8 | bc`m\]")
+  #ca=$(printf '\e[3%dm' `echo $(hostname|tr 'a-z' '0-9')%8 | bc`)
+#done
+
+PS1="$ca\H\s$cc \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash 2>/dev/null
+
+_end_time=`date +%s.%3N`
+_processing_time=$(echo $(printf "%f-%f" $_end_time $_start_time) | bc)
+echo "Start time: $_start_time"
+echo "End time: $_end_time"
+echo "Processing time is: $_processing_time"
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
@@ -93,7 +108,9 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
 else
   echo 2;
   if [[ $TERM == "linux" && $USER != "root" ]]; then
-    jfbterm;
+    if [ -x jfbterm ] ; then
+      jfbterm;
+    fi
   fi
 fi
 
