@@ -73,7 +73,6 @@ export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
-c_1="\[\e[0m\]"
 c0="\[\e[30m\]"
 c1="\[\e[31m\033[1m\]"
 c2="\[\e[32m\033[1m\]"
@@ -86,18 +85,18 @@ c7="\[\e[37m\]"
 cc="\[\e[0m\]" 
 #for i in {1..20} ; do
   #ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8}m"'` 
-  #ca=$(ruby -e 'print "\e[3#{`hostname`.sum%8}m"') 
-  ca=$(echo "\[\e[3`echo $(hostname|tr 'a-z' '0-9')%8 | bc`m\]")
+  #ca=$(echo "\[\e[3`echo $(hostname|tr 'a-z' '0-9')%8 | bc`m\]")
+  ca="\[\e[3$(( `hostname|tr 'a-z' '0-9'` % 8 ))m\]"
   #ca=$(printf '\e[3%dm' `echo $(hostname|tr 'a-z' '0-9')%8 | bc`)
 #done
 
-PS1="$ca\H\s$cc \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
+PS1="$ca\H\s$cc \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $cc \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash 2>/dev/null
 
 _end_time=`date +%s.%3N`
-_processing_time=$(echo $(printf "%f-%f" $_end_time $_start_time) | bc)
+_processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )
 echo "Start time: $_start_time"
 echo "End time: $_end_time"
 echo "Processing time is: $_processing_time"
