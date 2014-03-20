@@ -17,6 +17,8 @@ alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
 alias s3='scr.rb 3'
+alias apu='sudo aptitude update'
+alias apg='sudo aptitude upgrade'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
@@ -83,14 +85,10 @@ c6="\[\e[36m\]"
 c7="\[\e[37m\]"
 
 cc="\[\e[0m\]" 
-#for i in {1..20} ; do
-  #ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8}m"'` 
-  #ca=$(echo "\[\e[3`echo $(hostname|tr 'a-z' '0-9')%8 | bc`m\]")
-  ca="\[\e[3$(( `hostname|tr 'a-z' '0-9'` % 8 ))m\]"
-  #ca=$(printf '\e[3%dm' `echo $(hostname|tr 'a-z' '0-9')%8 | bc`)
-#done
+ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
+cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
 
-PS1="$ca\H\s$cc \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $cc \n \342\224\224\342\224\200> "
+PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $cc \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash 2>/dev/null
@@ -100,6 +98,7 @@ _processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )
 echo "Start time: $_start_time"
 echo "End time: $_end_time"
 echo "Processing time is: $_processing_time"
+uptime
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
