@@ -31,4 +31,8 @@
 *.png
 *.jpg
 
+.[j-u]*
+.[w-z]*
+
 Downloads/*
+
