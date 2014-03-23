@@ -105,7 +105,6 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
   echo 1 ;
 else
-  echo 2;
   if [[ $TERM == "linux" && $USER != "root" ]]; then
     if [ -x jfbterm ] ; then
       jfbterm;
