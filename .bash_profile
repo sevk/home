@@ -21,7 +21,7 @@ alias s3='scr.rb 3'
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
 
-[ -x /bin/xset ] && xset r rate 230 60
+xset r rate 230 60
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"

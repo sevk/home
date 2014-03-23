@@ -41,9 +41,21 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
---terminal = "uxterm"
-terminal = os.execute("/kk/.rvm/rubies/ruby-2.0.0-p353/bin/ruby /kk/dotfiles/term.rb" )
-print(terminal == "terminal")
+function x(s)
+  a = os.execute(s)
+  print (s.." : " .. a)
+  return a
+end
+t = "terminal"
+if x(t) == 0 then
+  terminal = t
+else
+  cmd = "ruby /home/kk/dotfiles/term.rb"
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a')) 
+  f:close() 
+  terminal = s
+end
 
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
@@ -515,10 +527,10 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || ( DISPLAY=:0 " .. cmd .. ")")
 end
 run_once("xset r rate 230 60")
-xrun("xpad&")
-xrun("chromium-browser&")
-xrun("imwheel -k&")
-run_once("stardict&")
+run_once("xpad")
+run_once("chromium-browser")
+--xrun("imwheel -k")
+run_once("stardict")
 --xrun("fcitx -d&")
 procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
 --for k = 1, #procs do
