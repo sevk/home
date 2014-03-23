@@ -21,4 +21,5 @@ ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
 FontName=kk Semi-Bold 12
 FontAntiAlias=FALSE
+Help = FALSE
 

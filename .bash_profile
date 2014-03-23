@@ -1,12 +1,13 @@
+_start_time=`date +%s.%3N`
 
 echo " exe bash_profile"
 
-alias w3m='w3m www.google.com.sg'
+alias 7zz="7z -i@include.list -p a `ruby -e ' p Time.now.strftime(%q(%y%m%d%H%M%S%N_)) + File.basename(Dir.pwd) ' ` "
+#alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
 alias emerge='time emerge -v '
 alias make='time make '
 alias grep='grep -i --color=auto'
-alias scrot="scrot -s -e 'mv \$f /tmp/'"
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
@@ -17,11 +18,13 @@ alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
 alias s3='scr.rb 3'
+alias apu='sudo aptitude update'
+alias apg='sudo aptitude upgrade'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
 
-xset r rate 230 60
+which xset && xset r rate 230 60
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -70,20 +73,9 @@ fi
 export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 
 #PS1
-if [[ ${EUID} == 0 ]] ; then
-  ps1_color="\[\033[0;31m\]";
-  user_host="\h"
-else
-  ps1_color="\[\033[0;35m\]";
-  user_host="\[\033[0;36m\]\u\[\033[0;31m\]@\[\033[0;32m\]\h"
-fi
-
-export PS1="$ps1_color\342\224\214\342\224\200[\\$]\342\224\200[$(pwd)$user_host$ps1_color]\342\224\200[\[\033[32m\]\w"'$(__git_ps1 "(%s)")'"$ps1_color]\342\224\200[\[\033[8m\]\t$ps1_color]\n$ps1_color\342\224\224\342\224\200>\[\033[0m\]"
-
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
-c_1="\[\e[0m\]"
 c0="\[\e[30m\]"
 c1="\[\e[31m\033[1m\]"
 c2="\[\e[32m\033[1m\]"
@@ -93,10 +85,21 @@ c5="\[\e[35m\]"
 c6="\[\e[36m\]"
 c7="\[\e[37m\]"
 
-PS1="\H\s \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $c_1 \n \342\224\224\342\224\200> "
+cc="\[\e[0m\]" 
+ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
+cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
+
+PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $cc \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash 2>/dev/null
+
+_end_time=`date +%s.%3N`
+_processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )
+echo "Start time: $_start_time"
+echo "End time: $_end_time"
+echo "Processing time is: $_processing_time"
+uptime
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
@@ -104,8 +107,9 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
 else
   echo 2;
   if [[ $TERM == "linux" && $USER != "root" ]]; then
-    #jfbterm;
-    echo 3;
+    if [ -x jfbterm ] ; then
+      jfbterm;
+    fi
   fi
 fi
 
