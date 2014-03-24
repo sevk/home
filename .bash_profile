@@ -89,7 +89,7 @@ cc="\[\e[0m\]"
 ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
 cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
 
-PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%m%d %H%M%S} $cc \n \342\224\224\342\224\200> "
+PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%H:%M:%S} $cc \n \342\224\224\342\224\200> "
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash 2>/dev/null
@@ -100,6 +100,7 @@ echo "Start time: $_start_time"
 echo "End time: $_end_time"
 echo "Processing time is: $_processing_time"
 uptime
+date
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
