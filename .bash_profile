@@ -96,15 +96,14 @@ source dotfiles/git-completion.bash 2>/dev/null
 
 _end_time=`date +%s.%3N`
 _processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )
-echo "Start time: $_start_time"
-echo "End time: $_end_time"
+#echo "Start time: $_start_time"
+#echo "End time: $_end_time"
 echo "Processing time is: $_processing_time"
 uptime
 date
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
   exec awesome
-  echo 1 ;
 else
   if [[ $TERM == "linux" && $USER != "root" ]]; then
     if [ -x jfbterm ] ; then
