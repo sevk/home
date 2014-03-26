@@ -55,6 +55,22 @@ set hlsearch     " 設定高亮度顯示搜尋結果
 set incsearch    " 在關鍵字還沒完全輸入完畢前就顯示結果
 set smartindent  " 設定 smartindent
 set autoindent   "自动缩进
+set mouse=n
+set autoread     " 当文件在外部被修改时，自动重新读取
+augroup checktime
+   au!
+   if !has("gui_running")
+      "silent! necessary otherwise throws errors when using command
+      "line window.
+      autocmd BufEnter        * silent! checktime
+      autocmd CursorHold      * silent! checktime
+      autocmd CursorHoldI     * silent! checktime
+      "these two _may_ slow things down. Remove if they do.
+      autocmd CursorMoved     * silent! checktime
+      autocmd CursorMovedI    * silent! checktime
+   endif
+augroup END
+
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=90  " 保留 100 個使用過的指令
 "set cursorline   " 顯示目前的游標位置
