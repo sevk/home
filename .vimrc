@@ -55,7 +55,7 @@ set hlsearch     " 設定高亮度顯示搜尋結果
 set incsearch    " 在關鍵字還沒完全輸入完畢前就顯示結果
 set smartindent  " 設定 smartindent
 set autoindent   "自动缩进
-set mouse=n
+"set mouse=a
 set autoread     " 当文件在外部被修改时，自动重新读取
 augroup checktime
    au!

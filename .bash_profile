@@ -11,13 +11,17 @@ alias grep='grep -i --color=auto'
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
-alias gitd='git diff'
+alias gitd='git diff --color'
+#alias gitd='git diff'
 alias gits='git status'
 alias irc='irssi -c ub'
 alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
 alias s3='scr.rb 3'
+alias q='exit'
+alias scr='screen -h 260'
+alias d='s2'
 alias apu='sudo aptitude update'
 alias apg='sudo aptitude upgrade'
 
@@ -89,7 +93,7 @@ cc="\[\e[0m\]"
 ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
 cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
 
-PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%H:%M:%S} $cc \n \342\224\224\342\224\200> "
+PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n \342\224\224\342\224\200> $cc "
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash 2>/dev/null
