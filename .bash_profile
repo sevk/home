@@ -93,7 +93,7 @@ cc="\[\e[0m\]"
 ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
 cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
 
-PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n \342\224\224\342\224\200> $cc "
+PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n▶ $cc"
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash 2>/dev/null
