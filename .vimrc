@@ -34,10 +34,10 @@ filetype off                   " required!
 filetype plugin on
 filetype plugin indent on
 
-"set ff=unix
+set ff=dos        " 换行使用dos格式
 
 " 編輯喜好設定
-syntax on        " 語法上色顯示
+"syntax on        " 語法上色顯示
 set shiftwidth=2 " 設定縮排寬度 = 2
 set tabstop=2    " tab 的字元數
 set softtabstop=2
@@ -47,12 +47,12 @@ set noswf       " 交换文件 .xxx.swp
 
 "set foldmethod=syntax "折叠模式
 
-set ruler        " 顯示右下角設定值
+"set ruler        " 顯示右下角設定值
 set backspace=2  " 在 insert 也可用 backspace
 set ic           " 設定搜尋忽略大小寫
-set ru           " 第幾行第幾個字
+"set ru           " 第幾行第幾個字
 set hlsearch     " 設定高亮度顯示搜尋結果
-set incsearch    " 在關鍵字還沒完全輸入完畢前就顯示結果
+"set incsearch    " 在關鍵字還沒完全輸入完畢前就顯示結果
 set smartindent  " 設定 smartindent
 set autoindent   "自动缩进
 "set mouse=a
@@ -96,8 +96,8 @@ endif
 map <c-s> :w!<cr>
 map z; :q <cr>
 map zs :w <cr>
-map zq :q <cr>
-map za :wq <cr>
+map zk :q <cr>
+map zw :wq <cr>
 map zaa :wq! <cr>
 
 map <m-c> <ESC>:colo kkruby<ESC>

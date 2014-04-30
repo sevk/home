@@ -42,13 +42,16 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 function x(s)
-  a = os.execute(s)
+  a = os.execute("which "..s )
   print (s.." : " .. a)
-  return a
+  if a == 0 then return a else return 1 end
 end
+
 t = "terminal"
 if x(t) == 0 then
   terminal = t
+elseif x("xfce4-terminal") then
+  terminal = "xfce4-terminal"
 else
   cmd = "ruby /home/kk/dotfiles/term.rb"
   local f = assert(io.popen(cmd, 'r'))
@@ -550,7 +553,7 @@ end
 run_once("xset r rate 230 60")
 run_once("xpad")
 run_once("chromium-browser")
---xrun("imwheel -k")
+xrun("imwheel -k")
 run_once("xload")
 run_once("oclock")
 --run_once("chromium-browser&")

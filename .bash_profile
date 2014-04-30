@@ -96,7 +96,7 @@ cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+1}m"'`
 PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n▶ $cc"
 unset ps1_color user_host
 
-source dotfiles/git-completion.bash 2>/dev/null
+source dotfiles/git-completion.bash
 
 _end_time=`date +%s.%3N`
 _processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )
