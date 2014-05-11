@@ -236,11 +236,11 @@ autocmd BufReadPost *
 
 "set guifont=DejaVu\ Sans\ Mono:h14:cANSI "设置字体，h代表字体大小 
 "set nobackup "不自动备份
-if has('gui_running')
+"if has('gui_running')
    "set guifont=Monospace\ 12
-   set guifont=kk\ 11
+   "set guifont=kk\ 12
    "set guifont=Vera\ Sans\ YuanTi\ Mono\ 12
-endif
+"endif
 
 "set lines=26 "
 
