@@ -95,6 +95,7 @@ endif
 
 map <c-s> :w!<cr>
 map z; :q <cr>
+map zq :q <cr>
 map zs :w <cr>
 map zk :q <cr>
 map zw :wq <cr>
@@ -221,6 +222,15 @@ Bundle 'plasticboy/vim-markdown'
 "Bundle 'wincent/Command-T'
 "Bundle 'git://github.com/Lokaltog/vim-powerline.git'
 Bundle 'bling/vim-airline'
+Bundle 'supertab'
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+Bundle 'syntastic'
+"execute pathogen#infect()
+call pathogen#infect()
+let g:syntastic_warning_symbol = '⚠'
+"let g:syntastic_always_populate_loc_list = 1
+
 
 "selected search
 noremap gss "zy:!w3m "http://www.google.com.hk/search?q=<c-r>=substitute(@z,' ','%20','g')<cr>"<return>
@@ -236,11 +246,11 @@ autocmd BufReadPost *
 
 "set guifont=DejaVu\ Sans\ Mono:h14:cANSI "设置字体，h代表字体大小 
 "set nobackup "不自动备份
-"if has('gui_running')
-   "set guifont=Monospace\ 12
+if has('gui_running')
+   set guifont=Ubuntu\ Mono\ 13
    "set guifont=kk\ 12
    "set guifont=Vera\ Sans\ YuanTi\ Mono\ 12
-"endif
+endif
 
 "set lines=26 "
 
