@@ -24,6 +24,7 @@ alias scr='screen -h 260'
 alias d='s2'
 alias apu='sudo aptitude update'
 alias apg='sudo aptitude upgrade'
+alias x="startx"
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
@@ -97,6 +98,7 @@ PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)
 unset ps1_color user_host
 
 source dotfiles/git-completion.bash
+source ~/.bashrc
 
 _end_time=`date +%s.%3N`
 _processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )

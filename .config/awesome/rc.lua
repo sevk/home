@@ -551,16 +551,16 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 run_once("xset r rate 230 60")
-run_once("xpad")
-run_once("chromium-browser")
+--run_once("xpad")
+--run_once("chromium-browser")
 xrun("imwheel -k")
-run_once("xload")
-run_once("oclock")
+--run_once("xload")
+--run_once("oclock")
 --run_once("chromium-browser&")
 --xrun("imwheel -k")
-run_once("stardict")
+--run_once("stardict")
 --xrun("fcitx -d&")
-procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
+--procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
 --for k = 1, #procs do
   --start_daemon(procs[k])
 --end
