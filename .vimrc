@@ -31,6 +31,13 @@ endif
 set nocompatible " VIM 不使用和 VI 相容的模式
 filetype off                   " required!
 
+if exists("g:did_load_filetypes")
+   filetype off
+   filetype plugin indent off
+endif
+set runtimepath+=/media/kk/BAK/dev-tools/go/misc/vim " replace $GOROOT with the output of: go env GOROOT
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+syntax on
 filetype plugin on
 filetype plugin indent on
 
@@ -45,7 +52,7 @@ set sft          "补全提示
 set expandtab   " 用 space 代替 tab
 set noswf       " 交换文件 .xxx.swp
 
-"set foldmethod=syntax "折叠模式
+set foldmethod=marker "折叠模式
 
 "set ruler        " 顯示右下角設定值
 set backspace=2  " 在 insert 也可用 backspace
@@ -76,7 +83,7 @@ set history=90  " 保留 100 個使用過的指令
 "set cursorline   " 顯示目前的游標位置
 "set rnu        "行号
 "set nu        "行号
-set scrolloff=7  "光标前后保留10行
+set scrolloff=8  "光标前后保留10行
 set clipboard=unnamedplus "使用system剪贴板
 
 "export TERM=xterm-256color
@@ -160,10 +167,19 @@ set nocp
      " non github repos
      "Bundle 'git://git.wincent.com/command-t.git'
      
+     "Bundle 'cespare/vim-golang'
+     "Bundle 'vim-golang'
+     "Bundle 'Blackrush/vim-gocode'
+     "Bundle 'vim-gocode'
+     "autocmd BufWritePre *.go :Fmt
+     "autocmd FileType go autocmd BufWritePre <buffer> Fmt
+     set showcmd
+
+
      "Bundle 'Shougo/neocomplcache.vim'
      Bundle 'vim-ruby/vim-ruby'
      Bundle 'nathanaelkane/vim-indent-guides'
-     Bundle 'rking/ag.vim'
+     "Bundle 'rking/ag.vim'
      "Bundle 'gtags.vim'
      "Bundle 'vim-scripts/textutil.vim'
 
@@ -209,9 +225,8 @@ Bundle 'taglist.vim'
 Bundle 'c.vim'
 "Bundle 'Valloric/YouCompleteMe'
 "call pathogen#infect()
-"Bundle 'scrooloose/syntastic'
 "Bundle 'm2ym/rsense'
-Bundle 'danchoi/ri.vim'
+"Bundle 'danchoi/ri.vim'
 Bundle 'plasticboy/vim-markdown'
 "Bundle 'templates.vim'
 "Bundle 'vimim.vim'
@@ -220,17 +235,19 @@ Bundle 'plasticboy/vim-markdown'
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'vim-align'
 "Bundle 'wincent/Command-T'
-"Bundle 'git://github.com/Lokaltog/vim-powerline.git'
 Bundle 'bling/vim-airline'
 Bundle 'supertab'
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+set nocp
+"let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabRetainCompletionType = 1
+"let g:SuperTabDefaultCompletionType = <C-X><C-O> 
+
 Bundle 'syntastic'
 "execute pathogen#infect()
 call pathogen#infect()
 let g:syntastic_warning_symbol = '⚠'
 "let g:syntastic_always_populate_loc_list = 1
-
 
 "selected search
 noremap gss "zy:!w3m "http://www.google.com.hk/search?q=<c-r>=substitute(@z,' ','%20','g')<cr>"<return>
@@ -280,8 +297,6 @@ let Tlist_Process_File_Always=0 "是否一直处理tags.1:处理;0:不处理。�
 "let Tlist_Inc_Winwidth=0
 
 set completeopt=menuone,menu,longest,preview
-let g:SuperTabRetainCompletionType = 2
-"let g:SuperTabDefaultCompletionType = <C-X><C-O> 
 let g:acp_enableAtStartup = 0
 let g:AutoComplPop_MappingDriven = 0
 let g:acp_ignorecaseOption = 1
@@ -330,4 +345,13 @@ set cindent
 " markdown viewer
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_initial_foldlevel=1
+
+syntax on
+filetype indent on
+filetype plugin on
+autocmd FileType go compiler go
+au FileType go nmap <F5> <Plug>(go-run)
+au FileType go nmap <F2> <Plug>(go-build)
+au FileType go nmap <F6> <Plug>(go-test)
+au FileType go nmap <F7> <Plug>(go-coverage)
 

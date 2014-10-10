@@ -60,6 +60,14 @@ else
   terminal = s
 end
 
+function ruby1(cmd)
+  cmd = "ruby " .. cmd
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a')) 
+  f:close() 
+  print (s)
+end
+
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -336,7 +344,7 @@ globalkeys = awful.util.table.join(
     -- Standard program
     --awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     --awful.key({ modkey, "Shift"  }, "r", awesome.restart),
-    --awful.key({ modkey, "Shift"  }, "q", awesome.quit),
+    awful.key({ "Mod1","Control",  "Shift"  }, "q", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -551,16 +559,21 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 run_once("xset r rate 230 60")
-run_once("xpad")
-run_once("chromium-browser")
+--run_once("xpad")
+--run_once("chromium-browser")
 xrun("imwheel -k")
+--run_once("xfce4-notes")
+--run_once("chromium-browser")
 run_once("xload")
-run_once("oclock")
+xrun("source $HOME/.rvm/scripts/rvm && ~/bin/my_start.rb")
+xrun("source $HOME/.rvm/scripts/rvm && /media/kk/BAK/Download/fg/start_fg.rb")
+run_once("volumeicon")
+--run_once("oclock")
 --run_once("chromium-browser&")
---xrun("imwheel -k")
-run_once("stardict")
+--run_once("stardict")
 --xrun("fcitx -d&")
 procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
+
 --for k = 1, #procs do
   --start_daemon(procs[k])
 --end
@@ -573,3 +586,4 @@ procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "
 
 
 -- }}}
+

@@ -1,8 +1,12 @@
 _start_time=`date +%s.%3N`
 
 echo " exe bash_profile"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:~/bin/:/sbin:/bin"
+#echo $LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+#echo $LD_LIBRARY_PATH
 
-alias 7zz="7z -i@include.list -p a `ruby -e ' p Time.now.strftime(%q(%y%m%d%H%M%S%N_)) + File.basename(Dir.pwd) ' ` "
+alias 7zz="ruby ~/dotfiles/7zz.rb"
 #alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
 alias emerge='time emerge -v '
@@ -11,8 +15,7 @@ alias grep='grep -i --color=auto'
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
-alias gitd='git diff --color'
-#alias gitd='git diff'
+alias gitd='git diff --name-only;read -n 1; git diff --color '
 alias gits='git status'
 alias irc='irssi -c ub'
 alias s='scr.rb'
@@ -26,7 +29,11 @@ alias apu='sudo aptitude update'
 alias apg='sudo aptitude upgrade'
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
-export PATH="$PATH:/media/kk/BAK/dev-tools/jruby-1.7.4/bin"
+# /etc/bash.bashrc
+
+export PATH="$PATH:/usr/local/wine-pkg/bin"
+export GOPATH="/home/kk/dev/go"
+export QTDIR=/usr/lib/i386-linux-gnu/qt5
 
 which xset && xset r rate 230 60
 
@@ -65,8 +72,8 @@ unset local256
 echo $BASHRC_
 if [ -z "$BASHRC_" ] 
 then
-  export BASH_PRO_=" bash_prof ed yet"
-  export BASHRC_="bashrc ed yet"
+  BASH_PRO_=" bash_prof ed yet"
+  BASHRC_="bashrc ed yet"
   source ~/.bashrc
 else
   echo $BASHRC_
@@ -90,13 +97,13 @@ c6="\[\e[36m\]"
 c7="\[\e[37m\]"
 
 cc="\[\e[0m\]" 
-ca=`hostname | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
-cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+1}m"'` 
+ca=`hostname | ruby -e 'print "\e[4#{gets.hash%8+2}m"'` 
+cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+2}m"'` 
 
-PS1="$ca\H \s$cb \u $c2\w$c3 $(~/.rvm/bin/rvm-prompt v g) $c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n▶ $cc"
+PS1="$ca\H \s$cc$cb \u $cc$c2\w$cc$c3 $(~/.rvm/bin/rvm-prompt v g) $cc$c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n▶ $cc"
 unset ps1_color user_host
 
-source dotfiles/git-completion.bash
+source ~/dotfiles/git-completion.bash
 
 _end_time=`date +%s.%3N`
 _processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )
@@ -116,3 +123,4 @@ else
   fi
 fi
 
+stty -ixon
