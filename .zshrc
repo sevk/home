@@ -307,18 +307,7 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-#alias sudo='sudo env PATH=$PATH'
-alias s='scr.rb'
-alias s1='scr.rb 1'
-alias s2='scr.rb 2'
-alias s3='scr.rb 3'
-alias q='exit'
-alias gitd='git diff --color=auto'
-alias gs='git status'
-alias scr='screen -h 260'
-alias d='s2'
 
-alias zhcon='zhcon --utf8'
 alias ls='ls --show-control-chars --color=auto'
 alias cdscm='cd /media/kk/Programs/SCM'
 alias cdhh='cd /media/kk/Programs/SCM/_HH'
@@ -351,29 +340,6 @@ alias nauti='killall nautilus ; LC_ALL=zh_CN.UTF-8 nautilus & '
 alias dog='grep -v -E "(^$|^#|^!)"'
 alias fbt='sudo fbterm -s 16'
 
-alias ssh1='ssh action@apne1.nitrousbox.com -p 10169'
-alias ssh2='ssh action@apne1.actionbox.io -p 12613'
-alias smth='ssh 122.11.52.86 -1 -l sevk'
-alias lftp3='lftp 192.168.1.203 -u root,'
-alias lftp5='lftp 192.168.1.205 -u root,'
-alias lftp6='lftp 192.168.1.206 -u root,'
-alias lftp7='lftp 192.168.1.207 -u root,'
-alias lftp8='lftp 192.168.1.208 -u root,'
-alias lftp9='lftp 192.168.1.209 -u root,'
-alias lftp11='lftp 192.168.1.11 -u root,'
-alias lftp24='lftp 192.168.1.24 -u root,123456'
-alias lftp_cy='lftp 122.225.48.150 -p 9921 -u root,'
-
-alias rdph='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -u r -p - 122.225.25.54 -g 1200x768'
-alias rd80='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -u r -p - 192.168.1.80 -g 1200x768'
-alias rdhn='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -u r -p - 42.6.32.25 -g 1200x768'
-alias rd81='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -0 -u ad -p - 192.168.1.80 -g 1200x768'
-alias rd82='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -u r -p - 192.168.1.82 -g 80%'
-alias rd83='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -u administrator -p - 192.168.1.83 -g 90%'
-alias rd84='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -u r -p - 192.168.1.84 -g 1200x768'
-alias rd85='rdesktop -r disk:aa=/tmp/RDP -K -z -a 15 -u zjcy -p - 192.168.1.85 -g 1200x768'
-alias rd79='rdesktop -K -z -a 15 -u ad -p - -g 1200x768'
-
 alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -381,5 +347,28 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias frg='ruby /media/kk/BAK/Download/fg/start_fg.rb'
 alias pushall='ruby ~/dotfiles/pushall.rb'
+
+alias 7zz="ruby ~/dotfiles/7zz.rb"
+#alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
+alias jb='jfbterm'
+alias emerge='time emerge -v '
+alias make='time make '
+alias grep='grep -i --color=auto'
+alias ai='sudo aptitude install'
+alias gitd='git diff --name-only;read -n 1; git diff --color '
+alias gits='git status'
+alias irc='irssi -c ub'
+alias s='scr.rb'
+alias s1='scr.rb 1'
+alias s2='scr.rb 2'
+alias s3='scr.rb 3'
+alias q='exit'
+alias scr='screen -h 260'
+alias d='s2'
+alias apu='sudo aptitude update'
+alias apg='sudo aptitude upgrade'
+alias x="startx"
+
+source ~/.zsh_alias
 
 
