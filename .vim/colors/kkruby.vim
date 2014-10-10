@@ -25,7 +25,7 @@ let s:line         = "81869A"
 let s:status_line  = "10f527"
 let s:cursorline   = "2F393C"
 let s:statusline   = "4A5A5F"
-let s:comment      = "8d503f"
+let s:comment      = "3ddf3f"
 let s:red          = "e76481"
 let s:diff_red     = "542D32"
 let s:orange       = "CAaC81"
@@ -312,7 +312,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
   call <SID>X("Structure", s:purple, "", "")
   call <SID>X("Function", s:blue, "", "")
   call <SID>X("Constant", s:orange, "", "")
-  call <SID>X("String", "1baf10", "", "")
+  call <SID>X("String", "bbbfb0", "", "")
   call <SID>X("Special","ab8b83", "", "")
   call <SID>X("PreProc", s:purple, "", "")
   call <SID>X("Operator", s:aqua, "ffff00", "none")
@@ -363,10 +363,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
   call <SID>X("rubyOperator", s:aqua, "ffff00", "none")
   highlight rubyIdentifier            guifg=#7518a7     ctermfg=143
   highlight rubyConstant              guifg=#72b6ef ctermfg=167
-  highlight rubyInstanceVariable      guifg=#1165c1 ctermfg=189
+  highlight rubyInstanceVariable      guifg=#ff65c1 ctermfg=189
   highlight rubyInterpolation         guifg=#b173d7 ctermfg=107
-  highlight rubyLocalVariableOrMethod guifg=#d9903e ctermfg=189
-  highlight rubyPseudoVariable        guifg=#4596ff ctermfg=221
+  highlight rubyLocalVariableOrMethod guifg=#ff903e ctermfg=189
+  highlight rubyPseudoVariable        guifg=#ff96ff ctermfg=221
 
   " Python Highlighting
   call <SID>X("pythonInclude", s:purple, "", "")

@@ -380,5 +380,6 @@ alias ipa='ruby /home/kk/dev/kk-irc-bot/lib/ipwry.rb '
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias frg='ruby /media/kk/BAK/Download/fg/start_fg.rb'
+alias pushall='ruby ~/dotfiles/pushall.rb'
 
 

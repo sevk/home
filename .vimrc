@@ -225,6 +225,7 @@ Bundle 'taglist.vim'
 Bundle 'c.vim'
 "Bundle 'Valloric/YouCompleteMe'
 "call pathogen#infect()
+"Bundle 'scrooloose/syntastic'
 "Bundle 'm2ym/rsense'
 "Bundle 'danchoi/ri.vim'
 Bundle 'plasticboy/vim-markdown'
@@ -236,16 +237,9 @@ Bundle 'plasticboy/vim-markdown'
 "Bundle 'vim-align'
 "Bundle 'wincent/Command-T'
 Bundle 'bling/vim-airline'
-Bundle 'supertab'
-set nocp
-"let g:SuperTabDefaultCompletionType = "<c-n>"
-"let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:SuperTabRetainCompletionType = 1
-"let g:SuperTabDefaultCompletionType = <C-X><C-O> 
-
 Bundle 'syntastic'
 "execute pathogen#infect()
-call pathogen#infect()
+"call pathogen#infect()
 let g:syntastic_warning_symbol = '⚠'
 "let g:syntastic_always_populate_loc_list = 1
 

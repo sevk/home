@@ -27,6 +27,7 @@ alias scr='screen -h 260'
 alias d='s2'
 alias apu='sudo aptitude update'
 alias apg='sudo aptitude upgrade'
+alias x="startx"
 
 [[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
 # /etc/bash.bashrc
@@ -113,14 +114,10 @@ echo "Processing time is: $_processing_time"
 uptime
 date
 
-if [[ ! ${DISPLAY} && ${XDG_VTNR} == 8 ]]; then
-  exec awesome
-else
   if [[ $TERM == "linux" && $USER != "root" ]]; then
     if [ -x jfbterm ] ; then
       jfbterm;
     fi
   fi
-fi
 
 stty -ixon
