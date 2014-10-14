@@ -43,7 +43,6 @@ if [[ -s "$HOME/.rbenv/bin" ]] ; then
   eval "$(rbenv init -)"
 fi
 export RUBY_CFLAGS="-march=native -O3"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Enable 256 color capabilities for appropriate terminals
 
@@ -121,3 +120,5 @@ date
   fi
 
 stty -ixon
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

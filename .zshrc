@@ -290,18 +290,16 @@ function timeconv { date -d @$1 +"%Y-%m-%d %T" }
 
 # }}}
 
-
 ## END OF FILE #################################################################
 # vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4 
 #
-
-
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:~/bin/:/sbin:/bin"
 export PATH="$PATH:/usr/local/wine-pkg/bin"
 export GOPATH="/home/kk/dev/go"
 export QTDIR=/usr/lib/i386-linux-gnu/qt5
-# some more ls aliases
+
+# some more aliases {{{
 alias ap='/media/kk/BAK/dev-tools/Aptana_Studio_3/AptanaStudio3 '
 alias ls='ls --color=auto'
 alias ll='ls -alF'
@@ -370,5 +368,48 @@ alias apg='sudo aptitude upgrade'
 alias x="startx"
 
 source ~/.zsh_alias
+#}}}
 
+[[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
+# /etc/bash.bashrc
 
+export PATH="$PATH:/usr/local/wine-pkg/bin"
+export GOPATH="/home/kk/dev/go"
+export QTDIR=/usr/lib/i386-linux-gnu/qt5
+
+which xset && xset r rate 230 60
+
+if [[ -s "$HOME/.rbenv/bin" ]] ; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+export RUBY_CFLAGS="-march=native -O3"
+
+# Enable 256 color capabilities for appropriate terminals
+
+# Set this variable in your local shell config if you want remote
+# xterms connecting to this system, to be sent 256 colors.
+# This can be done in /etc/csh.cshrc, or in an earlier profile.d script.
+#   SEND_256_COLORS_TO_REMOTE=1
+
+# Terminals with any of the following set, support 256 colors (and are local)
+local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION"
+
+if [ -n "$local256" ] || [ -n "$SEND_256_COLORS_TO_REMOTE" ]; then
+  case "$TERM" in
+    'xterm') TERM=xterm-256color;;
+    'screen') TERM=screen-256color;;
+    'Eterm') TERM=Eterm-256color;;
+  esac
+  export TERM
+  export force_color_prompt=yes
+  if [ -n "$TERMCAP" ] && [ "$TERM" = "screen-256color" ]; then
+    TERMCAP=$(echo "$TERMCAP" | sed -e 's/Co#8/Co#256/g')
+    export TERMCAP
+  fi
+fi
+unset local256
+
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
