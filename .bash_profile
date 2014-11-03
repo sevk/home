@@ -36,13 +36,15 @@ export PATH="$PATH:/usr/local/wine-pkg/bin"
 export GOPATH="/home/kk/dev/go"
 export QTDIR=/usr/lib/i386-linux-gnu/qt5
 
-which xset && xset r rate 230 60
+which xset && xset r rate 249 60
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
-export RUBY_CFLAGS="-march=native -O3"
+
+export CFLAGS="-march=native -O3"
+export CPPFLAGS="-march=native -O3"
 
 # Enable 256 color capabilities for appropriate terminals
 
@@ -97,10 +99,11 @@ c6="\[\e[36m\]"
 c7="\[\e[37m\]"
 
 cc="\[\e[0m\]" 
-ca=`hostname | ruby -e 'print "\e[4#{gets.hash%8+2}m"'` 
+ca=`hostname | ruby -e 'print "\e[4#{gets.sum%8+2}m"'` 
 cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+2}m"'` 
+#cd=`ip addr | grep "inet " | ruby -e 'print "\e[3#{gets.sum%8+2}m"'` 
 
-PS1="$ca\H \s$cc$cb \u $cc$c2\w$cc$c3 $(~/.rvm/bin/rvm-prompt v g) $cc$c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n▶ $cc"
+PS1="$ca\H \s $cc $cb \u $cc$c2\w$cc$c3 $cc$c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n▶ $cc"
 unset ps1_color user_host
 
 source ~/dotfiles/git-completion.bash
@@ -121,4 +124,3 @@ date
 
 stty -ixon
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
