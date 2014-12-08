@@ -344,7 +344,7 @@ globalkeys = awful.util.table.join(
     -- Standard program
     --awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     --awful.key({ modkey, "Shift"  }, "r", awesome.restart),
-    awful.key({ "Mod1","Control",  "Shift"  }, "q", awesome.quit),
+    --awful.key({ "Mod1","Control",  "Shift"  }, "q", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -558,16 +558,16 @@ function run_once(cmd)
   end
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
-run_once("xset r rate 230 60")
+run_once("xset r rate 249 70")
 --run_once("xpad")
 --run_once("chromium-browser")
 xrun("imwheel -k")
 --run_once("xfce4-notes")
 --run_once("chromium-browser")
 run_once("xload")
-xrun("source $HOME/.rvm/scripts/rvm && ~/bin/my_start.rb")
-xrun("source $HOME/.rvm/scripts/rvm && /media/kk/BAK/Download/fg/start_fg.rb")
 run_once("volumeicon")
+xrun("ruby /home/kk/bin/my_start.rb")
+xrun("ruby /media/kk/BAK/Download/fg/start_fg.rb")
 --run_once("oclock")
 --run_once("chromium-browser&")
 --run_once("stardict")

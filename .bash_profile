@@ -33,6 +33,7 @@ alias x="startx"
 # /etc/bash.bashrc
 
 export PATH="$PATH:/usr/local/wine-pkg/bin"
+export GOROOT=/media/kk/BAK/dev-tools/go
 export GOPATH="/home/kk/dev/go"
 export QTDIR=/usr/lib/i386-linux-gnu/qt5
 
@@ -45,6 +46,7 @@ fi
 
 export CFLAGS="-march=native -O3"
 export CPPFLAGS="-march=native -O3"
+export CXXFLAGS="-march=native -O3"
 
 # Enable 256 color capabilities for appropriate terminals
 
@@ -123,4 +125,6 @@ date
   fi
 
 stty -ixon
+
+LANG=zh_CN.UTF-8
 

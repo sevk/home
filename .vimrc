@@ -150,12 +150,9 @@ set nocp
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
      set rtp+=/home/kk/dotfiles/vim/bundle/vundle/
      call vundle#rc()
-
      " let Vundle manage Vundle
      " required! 
-
      " My Bundles here:
-     "
      " original repos on github
      "Bundle 'tpope/vim-fugitive'
      "Bundle 'Lokaltog/vim-easymotion'
@@ -175,10 +172,11 @@ set nocp
      "autocmd FileType go autocmd BufWritePre <buffer> Fmt
      set showcmd
 
-
      "Bundle 'Shougo/neocomplcache.vim'
      Bundle 'vim-ruby/vim-ruby'
      Bundle 'nathanaelkane/vim-indent-guides'
+     "Bundle 'garbas/vim-snipmate'
+
      "Bundle 'rking/ag.vim'
      "Bundle 'gtags.vim'
      "Bundle 'vim-scripts/textutil.vim'
@@ -348,4 +346,11 @@ au FileType go nmap <F5> <Plug>(go-run)
 au FileType go nmap <F2> <Plug>(go-build)
 au FileType go nmap <F6> <Plug>(go-test)
 au FileType go nmap <F7> <Plug>(go-coverage)
+
+filetype plugin on
+au FileType php setl ofu=phpcomplete#CompletePHP
+au FileType ruby,eruby setl ofu=rubycomplete#Complete
+au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
+au FileType c setl ofu=ccomplete#CompleteCpp
+au FileType css setl ofu=csscomplete#CompleteCSS
 
