@@ -79,13 +79,13 @@ function start_daemon(dae)
   end
 end
 
--- Default modkey.
+-- Default altkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
---modkey = "Mod4" -- use Win key
-modkey = "Mod1" -- use Alt key
+winkey = "Mod4" -- use Win key
+altkey = "Mod1" -- use Alt key
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -147,9 +147,9 @@ mylayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
-                    awful.button({ modkey }, 1, awful.client.movetotag),
+                    awful.button({ altkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, awful.client.toggletag),
+                    awful.button({ altkey }, 3, awful.client.toggletag),
                     awful.button({ }, 4, awful.tag.viewnext),
                     awful.button({ }, 5, awful.tag.viewprev)
                     )
@@ -234,23 +234,20 @@ root.buttons(awful.util.table.join(
 www="chromium-browser"
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ "Mod4" }, "t",   function () awful.util.spawn(terminal) end),
-    awful.key({ "Mod4" }, "w", function () awful.util.spawn(www) end),
-    awful.key({ modkey , "Control"}, "w", function () awful.util.spawn(www) end),
-    awful.key({ "Mod4" }, "v", function () awful.util.spawn("virtualbox") end),
-    awful.key({ modkey, "Control" }, "v", function () awful.util.spawn("virtualbox") end),
-    awful.key({ "Mod4" }, "d", function () awful.util.spawn("stardict") end),
-    awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("stardict") end),
+    awful.key({ winkey }, "t",   function () awful.util.spawn(terminal) end),
+    awful.key({ winkey }, "w", function () awful.util.spawn(www) end),
+    awful.key({ altkey , "Control"}, "w", function () awful.util.spawn(www) end),
+    awful.key({ winkey }, "v", function () awful.util.spawn("virtualbox") end),
+    awful.key({ altkey, "Control" }, "v", function () awful.util.spawn("virtualbox") end),
+    awful.key({ winkey }, "d", function () awful.util.spawn("stardict") end),
+    awful.key({ altkey, "Control" }, "d", function () awful.util.spawn("stardict") end),
 
-    awful.key({ modkey, "Control" }, "r", function () awful.util.spawn("remmina") end),
+    awful.key({ altkey, "Control" }, "r", function () awful.util.spawn("remmina") end),
 
-    awful.key({ "Mod4" }, "e", function () awful.util.spawn("pcmanfm") end),
-    awful.key({ modkey, "Control" }, "e", function () awful.util.spawn("pcmanfm") end),
+    awful.key({ winkey }, "e", function () awful.util.spawn("pcmanfm") end),
+    awful.key({ altkey, "Control" }, "e", function () awful.util.spawn("pcmanfm") end),
 
-    awful.key({ modkey, "Control" }, "m",function ()
-      awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
-    end),
-    awful.key({ "Mod4" }, "m", function () 
+    awful.key({ altkey, "Control" }, "m",function ()
       awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
     end),
     -- own key
@@ -274,9 +271,9 @@ globalkeys = awful.util.table.join(
           naughty.notify({ title="Screenshot", text="The full screen captured" })
         end),
 
-    --awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+    --awful.key({ altkey,           }, "Left",   awful.tag.viewprev       ),
+    --awful.key({ altkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ altkey, "Control" }, "Escape", awful.tag.history.restore),
 
     --amixer sset Master toggle
     --awful.key({ "Shift" }, "#" .. 21 + 0x39,  --加0x39变成 f1~f9 , alt+1另有用 
@@ -286,28 +283,28 @@ globalkeys = awful.util.table.join(
         --end),
 
     --
-    --awful.key({ modkey,           }, "j",
+    --awful.key({ altkey,           }, "j",
         --function ()
             --awful.client.focus.byidx( 1)
             --if client.focus then client.focus:raise() end
         --end),
-    --awful.key({ modkey,           }, "k",
+    --awful.key({ altkey,           }, "k",
         --function ()
             --awful.client.focus.byidx(-1)
             --if client.focus then client.focus:raise() end
         --end),
 
-    --awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+    --awful.key({ altkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
-    --awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    --awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    --awful.key({ altkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
+    --awful.key({ altkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
 
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
+    awful.key({ altkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+    awful.key({ altkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
 
-    awful.key({ modkey,           }, "j",
+    awful.key({ altkey,           }, "j",
     function ()
       -- awful.client.focus.history.previous()
       awful.client.focus.byidx(-1)
@@ -325,7 +322,7 @@ globalkeys = awful.util.table.join(
       --end
     --end),
     
-    awful.key({ modkey,           }, "k",
+    awful.key({ altkey,           }, "k",
     function ()
       -- awful.client.focus.history.previous()
       awful.client.focus.byidx(1)
@@ -333,7 +330,7 @@ globalkeys = awful.util.table.join(
         client.focus:raise()
       end
     end),
-    --awful.key({ modkey,           }, "Tab",
+    --awful.key({ altkey,           }, "Tab",
     --function ()
     --awful.client.focus.history.previous()
     --if client.focus then
@@ -342,25 +339,19 @@ globalkeys = awful.util.table.join(
         --end),
 
     -- Standard program
-    --awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    --awful.key({ modkey, "Shift"  }, "r", awesome.restart),
+    --awful.key({ altkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    --awful.key({ altkey, "Shift"  }, "r", awesome.restart),
     --awful.key({ "Mod1","Control",  "Shift"  }, "q", awesome.quit),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    --awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    --awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    --awful.key({ altkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    --awful.key({ altkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
+    awful.key({ altkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ "Mod4" },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ winkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
+    awful.key({ altkey, "Control"  }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
                   mypromptbox[mouse.screen].widget,
@@ -370,26 +361,13 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ modkey, "Control" }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey,           }, "q",      function (c) c:kill()                         end),
-    awful.key({ "Control"         }, "q",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-    awful.key({ modkey, "Control" }, "t",   function () awful.util.spawn(terminal) end),
-    --awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            --c.minimized = true
-        end),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
-        end)
+    awful.key({ altkey, "Control" }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key({ altkey, "Control" }, "q",      function (c) c:kill()                         end),
+    awful.key({ altkey, "Shift" }, "f",  awful.client.floating.toggle                     ),
+    awful.key({ altkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ altkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
+    awful.key({ altkey, "Control" }, "t",   function () awful.util.spawn(terminal) end),
+    awful.key({ altkey, "Shift" }, "t",      function (c) c.ontop = not c.ontop            end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -403,27 +381,27 @@ end
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,        
-        awful.key({ modkey }, "#" .. i + 9 + 0x39,  --加0x39变成 f1~f9 , alt+1另有用
+        awful.key({ altkey }, "#" .. i + 9 + 0x39,  --加0x39变成 f1~f9 , alt+1另有用
                   function ()
                         local screen = mouse.screen
                         if tags[screen][i] then
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
+        awful.key({ altkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ altkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.movetotag(tags[client.focus.screen][i])
                       end
                   end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ altkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
@@ -433,8 +411,8 @@ end
 
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
+    awful.button({ altkey }, 1, awful.mouse.client.move),
+    awful.button({ altkey }, 3, awful.mouse.client.resize))
 
 -- Set keys
 root.keys(globalkeys)
@@ -472,7 +450,7 @@ awful.rules.rules = {
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
     -- Add a titlebar
-    -- awful.titlebar.add(c, { modkey = modkey })
+    -- awful.titlebar.add(c, { altkey = altkey })
 
     -- Enable sloppy focus
     --c:add_signal("mouse::enter", function(c)

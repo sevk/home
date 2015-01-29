@@ -6,6 +6,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:~/bin/:/sbin:/bin
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 #echo $LD_LIBRARY_PATH
 
+alias ll='ls -alF'
+alias unzip='unzip -Odos'
 alias 7zz="ruby ~/dotfiles/7zz.rb"
 #alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
@@ -15,9 +17,9 @@ alias grep='grep -i --color=auto'
 alias aps='aptitude search'
 alias apw='aptitude show'
 alias ai='sudo aptitude install'
-alias gitd='git diff --name-only;read -n 1; git diff --color '
+alias gitdn='git diff --name-only'
+alias gitd='git diff --color '
 alias gits='git status'
-alias irc='irssi -c ub'
 alias s='scr.rb'
 alias s1='scr.rb 1'
 alias s2='scr.rb 2'
@@ -127,4 +129,6 @@ date
 stty -ixon
 
 LANG=zh_CN.UTF-8
+
+alias aa='grep "sshd" /var/log/auth.log'
 
