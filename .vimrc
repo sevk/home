@@ -189,6 +189,7 @@ set nocp
 "Bundle 'mako.vim'
 "Bundle 'moin.vim'
 "Bundle 'xml.vim'
+Bundle 'airblade/vim-gitgutter'
 
 " Color
 
