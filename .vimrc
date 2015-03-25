@@ -190,9 +190,12 @@ set nocp
 "Bundle 'moin.vim'
 "Bundle 'xml.vim'
 Bundle 'airblade/vim-gitgutter'
+let g:gitgutter_highlight_lines = 1
+Bundle 'slim-template/vim-slim.git'
+Bundle 'vim-scripts/AutoComplPop'
+Bundle 'vim-scripts/OmniCppComplete'
 
 " Color
-
 "Bundle 'desert256.vim'
 "Bundle 'Impact'
 "Bundle 'matrix.vim'
@@ -289,11 +292,11 @@ let Tlist_Exit_OnlyWindow=1 "当taglist是最后一个分割窗口时，自动�
 let Tlist_Process_File_Always=0 "是否一直处理tags.1:处理;0:不处理。不是一直实时更新tags，因为没有必要
 "let Tlist_Inc_Winwidth=0
 
-set completeopt=menuone,menu,longest,preview
+"set completeopt=menuone,menu,longest,preview
 let g:acp_enableAtStartup = 0
-let g:AutoComplPop_MappingDriven = 0
-let g:acp_ignorecaseOption = 1
-let g:acp_completeOption = '.,w,b,k'
+let g:AutoComplPop_MappingDriven = 1
+let g:acp_ignorecaseOption = 2
+let g:acp_completeOption = '..,w,b,k'
 " """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
@@ -304,17 +307,19 @@ let g:neocomplcache_enable_camel_case_completion = 1
 " Use underbar completion.
 let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 1
+let g:neocomplcache_min_syntax_length = 3
 " set the max list in the popup menu. increase the speed
 let g:neocomplcache_max_list=16
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
-  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-let g:neocomplcache_auto_completion_start_length=1
+let g:neocomplcache_keyword_patterns['default'] = '\.\h\w*'
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplcache_auto_completion_start_length=2
 " ignore letter case
-let g:neocomplcache_enable_ignore_case=1
+let g:neocomplcache_enable_ignore_case=2
 " """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
 ":inoremap ( ()<ESC>i
@@ -354,4 +359,16 @@ au FileType ruby,eruby setl ofu=rubycomplete#Complete
 au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
+
+
+
+set completeopt=menu,menuone  
+let OmniCpp_MayCompleteDot=1    " 打开  . 操作符
+let OmniCpp_MayCompleteArrow=1  "打开 -> 操作符
+let OmniCpp_MayCompleteScope=1  "打开 :: 操作符
+let OmniCpp_NamespaceSearch=1   "打开命名空间
+let OmniCpp_GlobalScopeSearch=1  
+let OmniCpp_DefaultNamespace=["std"]  
+let OmniCpp_ShowPrototypeInAbbr=1  "打开显示函数原型
+let OmniCpp_SelectFirstItem = 2 "自动弹出时自动跳至第一个
 
