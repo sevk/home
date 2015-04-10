@@ -1,13 +1,15 @@
 _start_time=`date +%s.%3N`
 
 echo " exe bash_profile"
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:~/bin/:/sbin:/bin"
+echo $PATH | grep ruby || export PATH="/home/kk/ruby/bin:$PATH"
+export NODE_PATH="/media/kk/SYS2/usr_local/npm/node_modules/"
 #echo $LD_LIBRARY_PATH
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 #echo $LD_LIBRARY_PATH
 
-alias ll='ls -alF'
-alias unzip='unzip -Odos'
+alias cda='cd /tmp/RDP'
+alias ll='ls -alhF'
+alias unzip='echo -Odos ; unzip -Odos'
 alias 7zz="ruby ~/dotfiles/7zz.rb"
 #alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
@@ -26,7 +28,7 @@ alias s2='scr.rb 2'
 alias s3='scr.rb 3'
 alias q='exit'
 alias scr='screen -h 260'
-alias d='s2'
+
 alias apu='sudo aptitude update'
 alias apg='sudo aptitude upgrade'
 alias x="startx"
@@ -91,7 +93,8 @@ export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 
 #PS1
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+  echo
+  #git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 c0="\[\e[30m\]"
 c1="\[\e[31m\033[1m\]"
@@ -117,8 +120,8 @@ _processing_time=$(echo $_end_time $_start_time | awk '{print $1 - $2}' )
 #echo "Start time: $_start_time"
 #echo "End time: $_end_time"
 echo "Processing time is: $_processing_time"
-uptime
-date
+uptime 2>/dev/null
+date 2>/dev/null
 
   if [[ $TERM == "linux" && $USER != "root" ]]; then
     if [ -x jfbterm ] ; then
