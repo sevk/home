@@ -7,10 +7,10 @@ export NODE_PATH="/media/kk/SYS2/usr_local/npm/node_modules/"
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 #echo $LD_LIBRARY_PATH
 
-alias cda='cd /tmp/RDP'
+alias cb='crystal build'
+alias pm='pacman -S'
 alias ll='ls -alhF'
 alias unzip='echo -Odos ; unzip -Odos'
-alias 7zz="ruby ~/dotfiles/7zz.rb"
 #alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
 alias emerge='time emerge -v '
@@ -33,18 +33,29 @@ alias apu='sudo aptitude update'
 alias apg='sudo aptitude upgrade'
 alias x="startx"
 
-[[ -s "$HOME/dotfiles" ]] && export PATH="$PATH:$HOME/dotfiles"
-# /etc/bash.bashrc
+if [[ -s "$HOME/dotfiles" ]] ; then
+  echo $PATH | grep $HOME/dotfiles || export PATH="$PATH:$HOME/dotfiles"
+fi
 
-export PATH="$PATH:/usr/local/wine-pkg/bin"
+if [[ -s "$HOME/bin" ]] ; then
+  echo $PATH | grep $HOME/bin || export PATH="$PATH:$HOME/bin"
+fi
+
+if [[ -s "/usr/local/wine-pkg/bin" ]] ; then
+  echo $PATH | grep wine-pkg || export PATH="$PATH:/usr/local/wine-pkg/bin"
+fi
 export GOROOT=/media/kk/BAK/dev-tools/go
 export GOPATH="/home/kk/dev/go"
+if [[ -s "$GOROOT/bin" ]] ; then
+  echo $PATH | grep $GOROOT || export export PATH="$PATH:$GOROOT/bin"
+fi
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/kk/rust/lib"
 export QTDIR=/usr/lib/i386-linux-gnu/qt5
 
-which xset && xset r rate 249 60
+which xset && xset r rate 250 80
 
 if [[ -s "$HOME/.rbenv/bin" ]] ; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
+  echo $PATH | grep rbenv || export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 
@@ -131,7 +142,8 @@ date 2>/dev/null
 
 stty -ixon
 
-LANG=zh_CN.UTF-8
+export LANG=C
+#LANG=zh_CN.UTF-8
 
 alias aa='grep "sshd" /var/log/auth.log'
 
