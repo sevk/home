@@ -59,9 +59,9 @@ if [[ -s "$HOME/.rbenv/bin" ]] ; then
   eval "$(rbenv init -)"
 fi
 
-export CFLAGS="-march=native -O3"
-export CPPFLAGS="-march=native -O3"
-export CXXFLAGS="-march=native -O3"
+export CFLAGS="-march=native -O2"
+export CPPFLAGS="-march=native -O2"
+export CXXFLAGS="-march=native -O2"
 
 # Enable 256 color capabilities for appropriate terminals
 
@@ -121,7 +121,8 @@ ca=`hostname | ruby -e 'print "\e[4#{gets.sum%8+2}m"'`
 cb=`whoami | ruby -e 'print "\e[3#{gets.sum%8+2}m"'` 
 #cd=`ip addr | grep "inet " | ruby -e 'print "\e[3#{gets.sum%8+2}m"'` 
 
-PS1="$ca\H \s $cc $cb \u $cc$c2\w$cc$c3 $cc$c1$(parse_git_branch)$c4 \D{%H:%M:%S} \n▶ $cc"
+PS1="$ca\H \s $cc $cb \u $cc$c2\w$cc $c6 \D{%H:%M:%S} \n▶ $cc"
+
 unset ps1_color user_host
 
 source ~/dotfiles/git-completion.bash
