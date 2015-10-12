@@ -234,6 +234,11 @@ root.buttons(awful.util.table.join(
 www="chromium-browser"
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    awful.key({ altkey , "Control"}, "0", function () awful.util.spawn("rdesktop -r clipboard:CLIPBOARD -r disk:aa=/tmp/RDP -K -z -a 15 -0 -u r -p2345 192.168.1.80 -g 86%") end),
+    awful.key({ altkey , "Control"}, "2", function () awful.util.spawn("rdesktop -r clipboard:CLIPBOARD -r disk:aa=/tmp/RDP -K -z -a 15 -u r -p234 192.168.1.82 -g 80%") end),
+    awful.key({ altkey , "Control"}, "4", function () awful.util.spawn("rdesktop -r clipboard:CLIPBOARD -r disk:aa=/tmp/RDP -K -z -a 15 -u r -pcy84.r 192.168.1.84 -g 80%") end),
+    awful.key({ altkey , "Control"}, "9", function () awful.util.spawn("rdesktop -r clipboard:CLIPBOARD  -r disk:aa=/tmp/RDP -K -z -a 15 -u administrator -pgqhbj.123 42.6.41.241:10004 -g 86%  ") end),
+
     awful.key({ winkey }, "t",   function () awful.util.spawn(terminal) end),
     awful.key({ winkey }, "w", function () awful.util.spawn(www) end),
     awful.key({ altkey , "Control"}, "w", function () awful.util.spawn(www) end),
@@ -242,10 +247,8 @@ globalkeys = awful.util.table.join(
     awful.key({ winkey }, "d", function () awful.util.spawn("stardict") end),
     awful.key({ altkey, "Control" }, "d", function () awful.util.spawn("stardict") end),
 
-    awful.key({ altkey, "Control" }, "r", function () awful.util.spawn("remmina") end),
-
-    awful.key({ winkey }, "e", function () awful.util.spawn("pcmanfm") end),
-    awful.key({ altkey, "Control" }, "e", function () awful.util.spawn("pcmanfm") end),
+    awful.key({ winkey }, "e", function () awful.util.spawn("spacefm") end),
+    awful.key({ altkey, "Control" }, "e", function () awful.util.spawn("spacefm") end),
 
     awful.key({ altkey, "Control" }, "m",function ()
       awful.util.spawn_with_shell("/home/kk/dotfiles/m.rb")
@@ -351,7 +354,7 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ winkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ altkey, "Control"  }, "x",
+    awful.key({ altkey, "Control"  }, "r",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
                   mypromptbox[mouse.screen].widget,
@@ -376,6 +379,11 @@ for s = 1, screen.count() do
    keynumber = math.min(9, math.max(#tags[s], keynumber));
 end
 
+mytagbox = widget({ type = "textbox" })
+screen[1]:add_signal("tag::history::update", function()
+  mytagbox.text = awful.tag.selected(1).name
+end);
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -388,13 +396,7 @@ for i = 1, keynumber do
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
-        awful.key({ altkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = mouse.screen
-                      if tags[screen][i] then
-                          awful.tag.viewtoggle(tags[screen][i])
-                      end
-                  end),
+
         awful.key({ altkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
@@ -536,21 +538,20 @@ function run_once(cmd)
   end
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
-run_once("xset r rate 249 70")
 --run_once("xpad")
 --run_once("chromium-browser")
-xrun("imwheel -k")
+--xrun("imwheel -k")
 --run_once("xfce4-notes")
 --run_once("chromium-browser")
 run_once("xload")
+run_once("clipit")
 run_once("volumeicon")
-xrun("ruby /home/kk/bin/my_start.rb")
-xrun("ruby /media/kk/BAK/Download/fg/start_fg.rb")
+xrun("my_start.rb")
 --run_once("oclock")
 --run_once("chromium-browser&")
 --run_once("stardict")
 --xrun("fcitx -d&")
-procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "gnome-power-manager"}
+procs = {"gnome-settings-daemon", "nm-applet",  "gnome-sound-applet", "gnome-power-manager"}
 
 --for k = 1, #procs do
   --start_daemon(procs[k])
@@ -564,4 +565,7 @@ procs = {"gnome-settings-daemon", "nm-applet", "kupfer", "gnome-sound-applet", "
 
 
 -- }}}
+
+naughty.notify({ title = "ok", text = " test start up ok", timeout = 0 })
+
 

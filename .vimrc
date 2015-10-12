@@ -20,7 +20,7 @@ if has("win32")
 	set listchars=trail:P
 	set lcs=tab:\ \|
 el
-  "set rtp+=~/.vim/
+  set rtp+=~/.vim
 	"显示行尾
 	set encoding=utf-8
 	set listchars=trail:\♥
@@ -35,8 +35,7 @@ if exists("g:did_load_filetypes")
    filetype off
    filetype plugin indent off
 endif
-set runtimepath+=/media/kk/BAK/dev-tools/go/misc/vim " replace $GOROOT with the output of: go env GOROOT
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
 syntax on
 filetype plugin on
 filetype plugin indent on
@@ -80,9 +79,9 @@ augroup END
 
 set confirm      " 操作過程有衝突時，以明確的文字來詢問
 set history=90  " 保留 100 個使用過的指令
-"set cursorline   " 顯示目前的游標位置
+set cursorline   " 顯示目前的游標位置
 "set rnu        "行号
-"set nu        "行号
+set nu        "行号
 set scrolloff=8  "光标前后保留10行
 set clipboard=unnamedplus "使用system剪贴板
 
@@ -93,41 +92,36 @@ else
    colo desert " Or some other 16-color scheme
 endif
 
-"powerline{
-"* change the theme (available options: dark, light, simple, badwolf)
-  let g:airline_theme='badwolf'
-  set laststatus=2
-"}
-"set statusline=\ %4*%<\%m%<[%f\%r%h%w]%h%k\ [%{&ff},%{&fileencoding},%Y]%=\ L=%l,C=%v,%p%%\ %a\ %c
+let g:airline_theme='badwolf'
+set laststatus=2
+set statusline=\ %4*%<\%m%<[%f\%r%h%w]%h%k\ [%{&ff},%{&fileencoding},%Y]%=\ L=%l,C=%v,%p%%\ %a\ %c
 
 map <c-s> :w!<cr>
-map z; :q <cr>
 map zq :q <cr>
 map zs :w <cr>
-map zk :q <cr>
 map zw :wq <cr>
+map zza :wq! <cr>
 map zaa :wq! <cr>
+map zzz :Tlist <cr>
 
-map <m-c> <ESC>:colo kkruby<ESC>
 map  <f2> :call C_Make()<CR>
 imap <f2> :call C_Make()<CR>
 map <f9> :rake
 map  <f8> :!make install<CR>
 imap <f8> :!make install<CR>
+"map <s-m> :!man expand("<cowrd>") <CR>
 map <f3> <ESC>:bp<cr>
 imap <f3> <ESC>:bp<cr>
-imap <f5> def initialize(
+imap <f5> def initialize 
 "map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR>
 map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git . -e " . expand("<cword>") . " " <bar> cwindow<CR>
 map <C-f12> "*p
 imap <C-f12> <esc>"*pa
 
-map <C-d> :NERDTreeToggle<CR>
-"map <C-h> \c<space>
-map <C-h> ,c<space>
-map <C-/> ,c<space>
+map zd :NERDTreeToggle<CR>
 map <C-h> \c<space>
-map <C-3> \c<space>
+map z/ \c<space>
+map <C-/> \c<space>
 "set guicursor=i:ver100-iCursor
 
 map <C-j> :wincmd j<cr>
@@ -144,6 +138,37 @@ set tags+=../tags
 set tags+=tag
 au filetype c,cpp set tags+=/usr/include/tags
 
+set rtp+=~/.vim/plugged
+call plug#begin('~/.vim/plugged')
+Plug 'vim-ruby/vim-ruby'
+
+" Make sure you use single quotes
+"Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/vim-easy-align'
+
+" Group dependencies, vim-snippets depends on ultisnips
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Using git URL
+"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Plugin options
+"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+
+" Unmanaged plugin (manually installed and updated)
+"Plug '~/my-prototype-plugin'
+
+" Add plugins to &runtimepath
+call plug#end()
+
+
 set nocp
 
 " vim-scripts repos
@@ -151,7 +176,7 @@ set nocp
      set rtp+=/home/kk/dotfiles/vim/bundle/vundle/
      call vundle#rc()
      " let Vundle manage Vundle
-     " required! 
+     " required!
      " My Bundles here:
      " original repos on github
      "Bundle 'tpope/vim-fugitive'
@@ -172,9 +197,10 @@ set nocp
      "autocmd FileType go autocmd BufWritePre <buffer> Fmt
      set showcmd
 
-     "Bundle 'Shougo/neocomplcache.vim'
      Bundle 'vim-ruby/vim-ruby'
-     Bundle 'nathanaelkane/vim-indent-guides'
+     "Bundle 'nathanaelkane/vim-indent-guides'
+     "Bundle 'vim-clang'
+     "let g:clang_auto = 1
      "Bundle 'garbas/vim-snipmate'
 
      "Bundle 'rking/ag.vim'
@@ -191,8 +217,8 @@ set nocp
 "Bundle 'xml.vim'
 Bundle 'airblade/vim-gitgutter'
 let g:gitgutter_highlight_lines = 1
-Bundle 'slim-template/vim-slim.git'
-Bundle 'vim-scripts/AutoComplPop'
+"Bundle 'slim-template/vim-slim.git'
+"Bundle 'vim-scripts/AutoComplPop'
 Bundle 'vim-scripts/OmniCppComplete'
 
 " Color
@@ -209,7 +235,6 @@ Bundle 'vim-scripts/OmniCppComplete'
 "Bundle 'mako.vim--Torborg'
 
 " Plugin
-"Bundle 'The-NERD-tree'
 "Bundle 'AutoClose--Alves'
 "Bundle 'auto_mkdir'
 "Bundle 'cecutil'
@@ -220,37 +245,34 @@ Bundle 'vim-scripts/OmniCppComplete'
 "Bundle 'Mark'
 "Bundle 'matrix.vim'
 "Bundle 'mru.vim'
-Bundle 'The-NERD-Commenter'
+"Bundle 'The-NERD-Commenter'
+"Bundle 'The-NERD-tree'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+"Bundle 'Shougo/neocomplcache.vim'
 "Bundle 'project.vim'
 "Bundle 'restart.vim'
-Bundle 'taglist.vim'
+"Bundle 'taglist.vim'
+Bundle 'vim-scripts/taglist.vim'
 Bundle 'c.vim'
 "Bundle 'Valloric/YouCompleteMe'
-"call pathogen#infect()
 "Bundle 'scrooloose/syntastic'
 "Bundle 'm2ym/rsense'
 "Bundle 'danchoi/ri.vim'
-Bundle 'plasticboy/vim-markdown'
+"Bundle 'plasticboy/vim-markdown'
 "Bundle 'templates.vim'
 "Bundle 'vimim.vim'
 "Bundle 'ZenCoding.vim'
-"Bundle 'css_color.vim'
+Bundle 'css_color.vim'
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'vim-align'
 "Bundle 'wincent/Command-T'
 Bundle 'bling/vim-airline'
-Bundle 'syntastic'
+" Bundle 'syntastic'
 "execute pathogen#infect()
-"call pathogen#infect()
+call pathogen#infect()
 let g:syntastic_warning_symbol = '⚠'
 "let g:syntastic_always_populate_loc_list = 1
-
-"selected search
-noremap gss "zy:!w3m "http://www.google.com.hk/search?q=<c-r>=substitute(@z,' ','%20','g')<cr>"<return>
-"cword search
-noremap gsw ":!w3m "http://www.google.com.hk/search?q=<cword>"<return>
-noremap gsc ":!chromium-browser "http://www.google.com.hk/search?q=<cword>"<return>
-noremap gsf ":!firefox "http://www.google.com.hk/search?q=<cword>"<return>
 
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -267,12 +289,6 @@ endif
 
 "set lines=26 "
 
-let g:indent_guides_auto_colors = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#111111 ctermbg=232
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#222222 ctermbg=233
-"let g:loaded_indent_guides = 1
-let g:indent_guides_autocmds_enabled = 1
-au filetype rb,c,cpp,haskell,makefile,vim IndentGuidesEnable
 
 let g:agprg="<custom-ag-path-goes-here> -H --nocolor --nogroup --column"
 "map <F4> :Ag <cword><cr>
@@ -281,23 +297,11 @@ set dy=uhex "^A^B => <xx><xx>
 "进行Tlist的设置
 "TlistUpdate可以更新tags
 map <c-a>l :Tlist<CR>
-map <mod1-l> :Tlist<CR>
-map <m-9> :Tlist<CR>
-map <\x40-9> :Tlist<CR>
-let Tlist_Ctags_Cmd='ctags' "因为我们放在环境变量里，所以可以直接执行
-"let Tlist_Use_Right_Window=1 "让窗口显示在右边，0的话就是显示在左边
-"let Tlist_Show_One_File=0 "让taglist可以同时展示多个文件的函数列表，如果想只有1个，设置为1
-let Tlist_File_Fold_Auto_Close=1 "非当前文件，函数列表折叠隐藏
-let Tlist_Exit_OnlyWindow=1 "当taglist是最后一个分割窗口时，自动推出vim
-let Tlist_Process_File_Always=0 "是否一直处理tags.1:处理;0:不处理。不是一直实时更新tags，因为没有必要
-"let Tlist_Inc_Winwidth=0
+map <f6> :Tlist<CR>
 
 "set completeopt=menuone,menu,longest,preview
-let g:acp_enableAtStartup = 0
+let g:acp_enableAtStartup = 1
 let g:AutoComplPop_MappingDriven = 1
-let g:acp_ignorecaseOption = 2
-let g:acp_completeOption = '..,w,b,k'
-" """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -318,40 +322,11 @@ let g:neocomplcache_keyword_patterns['default'] = '\.\h\w*'
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 let g:neocomplcache_auto_completion_start_length=2
-" ignore letter case
-let g:neocomplcache_enable_ignore_case=2
-" """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
-":inoremap ( ()<ESC>i
-":inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {}<ESC>i
-":inoremap } <c-r>=ClosePair('}')<CR>
-":inoremap [ []<ESC>i
-":inoremap ] <c-r>=ClosePair(']')<CR>
-":inoremap < <><ESC>i
-":inoremap > <c-r>=ClosePair('>')<CR>
-function ClosePair(char)
-if getline('.')[col('.') - 1] == a:char
-  return "\<Right>"
-else
-  return a:char
-endif
-endf
-" """"""""""""""""""""""""""auto complete () "" """"""""""""""""""""""""""""""""""""""""
+
 set cindent
 
-" markdown viewer
-let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_initial_foldlevel=1
-
 syntax on
-filetype indent on
-filetype plugin on
-autocmd FileType go compiler go
-au FileType go nmap <F5> <Plug>(go-run)
-au FileType go nmap <F2> <Plug>(go-build)
-au FileType go nmap <F6> <Plug>(go-test)
-au FileType go nmap <F7> <Plug>(go-coverage)
+"filetype indent on
 
 filetype plugin on
 au FileType php setl ofu=phpcomplete#CompletePHP
@@ -359,8 +334,8 @@ au FileType ruby,eruby setl ofu=rubycomplete#Complete
 au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
-
-
+au BufEnter * if &ft !~ '^nerdtree$' | silent! lcd %:p:h | endif
+autocmd BufRead,BufNewFile Appraisals set filetype=ruby
 
 set completeopt=menu,menuone  
 let OmniCpp_MayCompleteDot=1    " 打开  . 操作符
