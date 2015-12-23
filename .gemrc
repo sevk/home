@@ -2,8 +2,8 @@
 :backtrace: false
 :bulk_threshold: 1000
 :sources:
-- http://ruby.taobao.org/
-#- http://gems.github.com/
+- https://ruby.taobao.org/
+# - https://packagecloud.io/github/git-lfs/
 :update_sources: true
 :verbose: true
-gem: --no-ri --no-rdoc
+gem: "--no-ri --no-rdoc"

@@ -14,6 +14,8 @@ alias unzip='echo -Odos ; unzip -Odos'
 #alias scrot="scrot -s -e 'mv \$f /tmp/; upircimage.rb \$f ' "
 alias jb='jfbterm'
 alias emerge='time emerge -v '
+alias emergeu='emerge -DNuav --with-bdeps=y @system @world'
+alias emergec='emerge -ac'
 alias make='time make '
 alias grep='grep -i --color=auto'
 alias aps='aptitude search'
@@ -143,7 +145,7 @@ date 2>/dev/null
 
 stty -ixon
 
-export LANG=C
+#export LANG=C
 #LANG=zh_CN.UTF-8
 
 alias aa='grep "sshd" /var/log/auth.log'

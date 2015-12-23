@@ -305,12 +305,12 @@ globalkeys = awful.util.table.join(
 
     awful.key({ altkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ altkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-    awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
+    --awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
 
     awful.key({ altkey,           }, "j",
     function ()
       -- awful.client.focus.history.previous()
-      awful.client.focus.byidx(-1)
+      awful.client.focus.byidx(1)
       if client.focus then
         client.focus:raise()
       end
@@ -319,7 +319,7 @@ globalkeys = awful.util.table.join(
     --awful.key({ "Control",           }, "Tab",
     --function ()
       ---- awful.client.focus.history.previous()
-      --awful.client.focus.byidx(1)
+      --awful.client.focus.byidx(-1)
       --if client.focus then
         --client.focus:raise()
       --end
@@ -328,7 +328,7 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey,           }, "k",
     function ()
       -- awful.client.focus.history.previous()
-      awful.client.focus.byidx(1)
+      awful.client.focus.byidx(-1)
       if client.focus then
         client.focus:raise()
       end
