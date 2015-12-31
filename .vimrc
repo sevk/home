@@ -136,6 +136,7 @@ map k gk
 
 set tags+=../tags
 set tags+=tag
+set tags+=tags.base
 au filetype c,cpp set tags+=/usr/include/tags
 
 set rtp+=~/.vim/plugged
@@ -202,6 +203,7 @@ set nocp
      "Bundle 'vim-clang'
      "let g:clang_auto = 1
      "Bundle 'garbas/vim-snipmate'
+     Bundle 'Valloric/YouCompleteMe'
 
      "Bundle 'rking/ag.vim'
      "Bundle 'gtags.vim'
@@ -218,8 +220,6 @@ set nocp
 Bundle 'airblade/vim-gitgutter'
 let g:gitgutter_highlight_lines = 1
 "Bundle 'slim-template/vim-slim.git'
-"Bundle 'vim-scripts/AutoComplPop'
-Bundle 'vim-scripts/OmniCppComplete'
 
 " Color
 "Bundle 'desert256.vim'
@@ -249,13 +249,11 @@ Bundle 'vim-scripts/OmniCppComplete'
 "Bundle 'The-NERD-tree'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-"Bundle 'Shougo/neocomplcache.vim'
 "Bundle 'project.vim'
 "Bundle 'restart.vim'
 "Bundle 'taglist.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'c.vim'
-"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'm2ym/rsense'
 "Bundle 'danchoi/ri.vim'
@@ -299,51 +297,11 @@ set dy=uhex "^A^B => <xx><xx>
 map <c-a>l :Tlist<CR>
 map <f6> :Tlist<CR>
 
-"set completeopt=menuone,menu,longest,preview
-let g:acp_enableAtStartup = 1
-let g:AutoComplPop_MappingDriven = 1
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-" set the max list in the popup menu. increase the speed
-let g:neocomplcache_max_list=16
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\.\h\w*'
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-let g:neocomplcache_auto_completion_start_length=2
-
 set cindent
 
 syntax on
 "filetype indent on
 
 filetype plugin on
-au FileType php setl ofu=phpcomplete#CompletePHP
-au FileType ruby,eruby setl ofu=rubycomplete#Complete
-au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
-au FileType c setl ofu=ccomplete#CompleteCpp
-au FileType css setl ofu=csscomplete#CompleteCSS
-au BufEnter * if &ft !~ '^nerdtree$' | silent! lcd %:p:h | endif
 autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-
-set completeopt=menu,menuone  
-let OmniCpp_MayCompleteDot=1    " 打开  . 操作符
-let OmniCpp_MayCompleteArrow=1  "打开 -> 操作符
-let OmniCpp_MayCompleteScope=1  "打开 :: 操作符
-let OmniCpp_NamespaceSearch=1   "打开命名空间
-let OmniCpp_GlobalScopeSearch=1  
-let OmniCpp_DefaultNamespace=["std"]  
-let OmniCpp_ShowPrototypeInAbbr=1  "打开显示函数原型
-let OmniCpp_SelectFirstItem = 2 "自动弹出时自动跳至第一个
 
