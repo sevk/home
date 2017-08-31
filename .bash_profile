@@ -2,7 +2,7 @@ _start_time=`date +%s.%3N`
 
 echo " exe bash_profile"
 
-export PATH=/home/kk/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/kk/dotfiles:/home/kk/.gem/ruby/2.4.0/bin:/usr/lib/go/bin:/usr/local2/qtcreator-3.5.1/bin:/usr/local/Qt-5.5.1/bin:/media/kk/Programs/jdk/jdk1.8.0_65:/media/kk/Programs/jdk/jdk1.8.0_65/bin:/media/kk/Programs/jdk/jdk1.8.0_65:/media/kk/Programs/jdk/jdk1.8.0_65/bin
+export PATH=/home/kk/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/home/kk/dotfiles
 
 # If user ID is greater than or equal to 1000 & if ~/bin exists and is a directory & if ~/bin is not already in your $PATH
 # then export ~/bin to your $PATH.
@@ -140,7 +140,7 @@ c6="\[\e[36m\]"
 c7="\[\e[37m\]"
 
 cc="\[\e[0m\]" 
-ca=`hostname | ruby -e 'print "\e[4#{(1+gets.sum)%8+2}m"'` 
+ca=`uname -a | ruby -e 'print "\e[4#{(1+gets.sum)%8+2}m"'` 
 cb=`whoami | ruby -e 'print "\e[4#{gets.sum%8+2}m"'` 
 cd=`ip addr | grep "inet " | ruby -e 'print "\e[4#{gets.sum%8+2}m"'` 
 
