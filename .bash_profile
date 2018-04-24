@@ -2,7 +2,7 @@ _start_time=`date +%s.%3N`
 
 echo " exe bash_profile"
 
-export PATH=/home/kk/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/home/kk/dotfiles
+export PATH=/home/kk/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/home/kk/dotfiles:/home/kk/.gem/ruby/2.5.0/bin
 
 # If user ID is greater than or equal to 1000 & if ~/bin exists and is a directory & if ~/bin is not already in your $PATH
 # then export ~/bin to your $PATH.
@@ -56,9 +56,8 @@ if [[ -s "$HOME/dotfiles" ]] ; then
   echo $PATH | grep $HOME/dotfiles || export PATH="$PATH:$HOME/dotfiles"
 fi
 
-rv=$( ruby -v | awk '{print $2}' | awk -Fp '{ print $1}' )
-echo $PATH | grep 2.3.0 || export PATH="$PATH:/home/kk/.gem/ruby/2.3.0/bin"
-echo $PATH | grep $rv || export PATH="$PATH:/home/kk/.gem/ruby/$rv/bin"
+rv=$( ruby -e 'print RUBY_VERSION.scan(/\d+\.\d+/)[0]' )
+echo $PATH | grep "$rv.0" || export PATH="$PATH:/home/kk/.gem/ruby/$rv.0/bin"
 unset rv
 
 if [[ -s "$HOME/bin" ]] ; then
@@ -171,3 +170,7 @@ stty -ixon
 
 alias aa='grep "sshd" /var/log/auth.log'
 
+
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
