@@ -142,6 +142,10 @@ au filetype c,cpp set tags+=/usr/include/tags
 set rtp+=~/.vim/plugged
 call plug#begin('~/.vim/plugged')
 Plug 'vim-ruby/vim-ruby'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/c.vim'
+Plug 'stjernstrom/vim-ruby-run'
+
 
 " Make sure you use single quotes
 "Plug 'junegunn/seoul256.vim'
@@ -174,8 +178,8 @@ set nocp
 
 " vim-scripts repos
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-     set rtp+=/home/kk/dotfiles/vim/bundle/vundle/
-     call vundle#rc()
+    " set rtp+=/home/kk/dotfiles/vim/bundle/vundle/
+    " call vundle#rc()
      " let Vundle manage Vundle
      " required!
      " My Bundles here:
@@ -188,8 +192,6 @@ set nocp
      "Bundle 'L9'
      "Bundle 'FuzzyFinder'
      " non github repos
-     "Bundle 'git://git.wincent.com/command-t.git'
-     
      "Bundle 'cespare/vim-golang'
      "Bundle 'vim-golang'
      "Bundle 'Blackrush/vim-gocode'
@@ -198,12 +200,12 @@ set nocp
      "autocmd FileType go autocmd BufWritePre <buffer> Fmt
      set showcmd
 
-     Bundle 'vim-ruby/vim-ruby'
+     "Bundle 'vim-ruby/vim-ruby'
      "Bundle 'nathanaelkane/vim-indent-guides'
      "Bundle 'vim-clang'
      "let g:clang_auto = 1
      "Bundle 'garbas/vim-snipmate'
-     Bundle 'Valloric/YouCompleteMe'
+    " Bundle 'Valloric/YouCompleteMe'
 
      "Bundle 'rking/ag.vim'
      "Bundle 'gtags.vim'
@@ -217,8 +219,8 @@ set nocp
 "Bundle 'mako.vim'
 "Bundle 'moin.vim'
 "Bundle 'xml.vim'
-Bundle 'airblade/vim-gitgutter'
-let g:gitgutter_highlight_lines = 1
+" Bundle 'airblade/vim-gitgutter'
+" let g:gitgutter_highlight_lines = 1
 "Bundle 'slim-template/vim-slim.git'
 
 " Color
@@ -247,13 +249,12 @@ let g:gitgutter_highlight_lines = 1
 "Bundle 'mru.vim'
 "Bundle 'The-NERD-Commenter'
 "Bundle 'The-NERD-tree'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdtree'
+" Bundle 'scrooloose/nerdcommenter'
 "Bundle 'project.vim'
 "Bundle 'restart.vim'
 "Bundle 'taglist.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'c.vim'
+Plug 'vim-scripts/taglist.vim'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'm2ym/rsense'
 "Bundle 'danchoi/ri.vim'
@@ -261,14 +262,14 @@ Bundle 'c.vim'
 "Bundle 'templates.vim'
 "Bundle 'vimim.vim'
 "Bundle 'ZenCoding.vim'
-Bundle 'css_color.vim'
+"Plug 'css_color.vim'
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'vim-align'
 "Bundle 'wincent/Command-T'
-Bundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 " Bundle 'syntastic'
 "execute pathogen#infect()
-call pathogen#infect()
+" call pathogen#infect()
 let g:syntastic_warning_symbol = '⚠'
 "let g:syntastic_always_populate_loc_list = 1
 
