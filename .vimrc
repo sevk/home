@@ -144,8 +144,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-ruby/vim-ruby'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/c.vim'
-Plug 'stjernstrom/vim-ruby-run'
-
+au filetype ruby map <c-e> :!ruby %<cr>
 
 " Make sure you use single quotes
 "Plug 'junegunn/seoul256.vim'
@@ -281,7 +280,7 @@ autocmd BufReadPost *
 "set guifont=DejaVu\ Sans\ Mono:h14:cANSI "设置字体，h代表字体大小 
 "set nobackup "不自动备份
 if has('gui_running')
-   set guifont=Ubuntu\ Mono\ 13
+   "set guifont=Ubuntu\ Mono\ 10
    "set guifont=kk\ 12
    "set guifont=Vera\ Sans\ YuanTi\ Mono\ 12
 endif
